@@ -167,7 +167,7 @@ components:
         count:
           type: integer
           description: カード枚数
-    
+
     myCardList:
       type: array
       items:

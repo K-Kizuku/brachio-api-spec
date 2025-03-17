@@ -32,7 +32,7 @@ decks:
             schema:
               type: array
               items:
-                $ref: '../components/schemas/deck.yaml#/components/schemas/deckBaseWithId'
+                $ref: "../components/schemas/deck.yaml#/components/schemas/deckBaseWithId"
 deckWithId:
   get:
     summary: デッキを取得
@@ -53,9 +53,7 @@ deckWithId:
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: '../components/schemas/deck.yaml#/components/schemas/deckWithId'
+              $ref: "../components/schemas/deck.yaml#/components/schemas/deckWithId"
   put:
     summary: デッキを更新
     description: デッキを更新する
@@ -74,14 +72,14 @@ deckWithId:
       content:
         application/json:
           schema:
-            $ref: '../components/schemas/deck.yaml#/components/schemas/deck'
+            $ref: "../components/schemas/deck.yaml#/components/schemas/deck"
     responses:
       "200":
         description: OK
         content:
           application/json:
             schema:
-              $ref: '../components/schemas/deck.yaml#/components/schemas/deckWithId'
+              $ref: "../components/schemas/deck.yaml#/components/schemas/deckWithId"
   delete:
     summary: デッキを削除
     description: デッキを削除する

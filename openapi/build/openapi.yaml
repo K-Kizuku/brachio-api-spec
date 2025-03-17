@@ -146,9 +146,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/deckWithId'
-                type: array
+                $ref: '#/components/schemas/deckWithId'
           description: OK
       summary: デッキを取得
       tags:

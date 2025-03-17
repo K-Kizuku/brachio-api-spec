@@ -165,7 +165,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/deck'
+              $ref: '#/components/schemas/updateDeck'
         required: true
       responses:
         "200":
@@ -284,7 +284,7 @@ components:
             name: name
             text: text
           rarity: 0
-          element: grass
+          element: "null"
         - retreatCost: 1
           masterCardId: masterCardId
           cardType: monster
@@ -314,7 +314,7 @@ components:
             name: name
             text: text
           rarity: 0
-          element: grass
+          element: "null"
       properties:
         cards:
           items:
@@ -359,7 +359,7 @@ components:
         - id
         type: object
       example:
-        color: grass
+        color: "null"
         name: name
         id: id
         thumbnailCard:
@@ -401,7 +401,7 @@ components:
         cards:
         - id: id
         - id: id
-        color: grass
+        color: "null"
         name: name
         id: id
         thumbnailCard:
@@ -423,6 +423,33 @@ components:
         - energies
         - name
         type: object
+    updateDeck:
+      description: デッキ更新リクエスト
+      properties:
+        name:
+          description: デッキ名
+          type: string
+        masterCardIds:
+          description: マスターカードID
+          items:
+            type: string
+          type: array
+        thumbnailCardId:
+          description: サムネイルカードID
+          type: string
+        energies:
+          items:
+            $ref: '#/components/schemas/element'
+          type: array
+        color:
+          $ref: '#/components/schemas/element'
+      required:
+      - color
+      - energies
+      - masterCardIds
+      - name
+      - thumbnailCardId
+      type: object
     myCardList:
       items:
         $ref: '#/components/schemas/masterCardWithCount'
@@ -460,7 +487,7 @@ components:
             name: name
             text: text
           rarity: 0
-          element: grass
+          element: "null"
       properties:
         masterCard:
           $ref: '#/components/schemas/masterCard'
@@ -545,7 +572,7 @@ components:
           name: name
           text: text
         rarity: 0
-        element: grass
+        element: "null"
     masterCardBase:
       description: 全カード共通のプロパティ
       properties:
@@ -581,16 +608,12 @@ components:
       type: string
     element:
       enum:
-      - grass
-      - fire
-      - water
-      - lightning
-      - psychic
-      - fighting
-      - darkness
-      - metal
-      - dragon
-      - normal
+      - "null"
+      - money
+      - knowledge
+      - muscle
+      - alchohol
+      - popularity
       type: string
     skill:
       description: ワザ

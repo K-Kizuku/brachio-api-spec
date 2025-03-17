@@ -58,3 +58,30 @@ components:
               type: string
               description: デッキID
               readOnly: true
+    updateDeck:
+      type: object
+      description: デッキ更新リクエスト
+      required:
+        - name
+        - energies
+        - color
+        - thumbnailCardId
+        - masterCardIds
+      properties:
+        name:
+          type: string
+          description: デッキ名
+        masterCardIds:
+          type: array
+          items:
+            type: string
+          description: マスターカードID
+        thumbnailCardId:
+          type: string
+          description: サムネイルカードID
+        energies:
+          type: array
+          items:
+            $ref: "./masterCard.yaml#/components/schemas/element"
+        color:
+          $ref: "./masterCard.yaml#/components/schemas/element"

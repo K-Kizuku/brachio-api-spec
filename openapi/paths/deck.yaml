@@ -72,7 +72,7 @@ deckWithId:
       content:
         application/json:
           schema:
-            $ref: "../components/schemas/deck.yaml#/components/schemas/deck"
+            $ref: "../components/schemas/deck.yaml#/components/schemas/updateDeck"
     responses:
       "200":
         description: OK

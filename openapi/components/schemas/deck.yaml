@@ -16,12 +16,12 @@ components:
           type: string
           description: デッキ名
         thumbnailCard:
-          $ref: './card.yaml#/components/schemas/card'
+          $ref: "./card.yaml#/components/schemas/card"
         color:
-          $ref: './masterCard.yaml#/components/schemas/element'
+          $ref: "./masterCard.yaml#/components/schemas/element"
     deckBaseWithId:
       allOf:
-        - $ref: '#/components/schemas/deckBase'
+        - $ref: "#/components/schemas/deckBase"
         - type: object
           required:
             - id
@@ -32,22 +32,24 @@ components:
               readOnly: true
     deck:
       allOf:
-        - $ref: '#/components/schemas/deckBase'
+        - $ref: "#/components/schemas/deckBase"
         - type: object
           required:
             - cards
+            - energies
+            - name
           properties:
             cards:
               type: array
               items:
-                $ref: './card.yaml#/components/schemas/card'
+                $ref: "./card.yaml#/components/schemas/card"
             energies:
               type: array
               items:
-                $ref: './masterCard.yaml#/components/schemas/element'
+                $ref: "./masterCard.yaml#/components/schemas/element"
     deckWithId:
       allOf:
-        - $ref: '#/components/schemas/deck'
+        - $ref: "#/components/schemas/deck"
         - type: object
           required:
             - id

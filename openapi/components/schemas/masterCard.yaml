@@ -47,7 +47,8 @@ components:
           required:
             - hp
             - skills
-            - weekness
+            - weakness
+            - rarity
           properties:
             hp:
               type: integer
@@ -60,7 +61,7 @@ components:
                 $ref: "#/components/schemas/skill"
             ability:
               $ref: "#/components/schemas/ability"
-            weekness:
+            weakness:
               $ref: "#/components/schemas/element"
             retreatCost:
               type: integer
@@ -81,14 +82,10 @@ components:
           description: サポーターカードのプロパティ
           required:
             - text
-            - effect
           properties:
             text:
               type: string
               description: 説明文
-            effect:
-              type: string
-              description: 効果
     masterGoodsCard:
       allOf:
         - $ref: "#/components/schemas/masterCardBase"
@@ -96,14 +93,10 @@ components:
           description: グッズカードのプロパティ
           required:
             - text
-            - effect
           properties:
             text:
               type: string
               description: 説明文
-            effect:
-              type: string
-              description: 効果
 
     skill:
       type: object
@@ -112,7 +105,6 @@ components:
         - name
         - text
         - damage
-        - damageOption
         - cost
       properties:
         name:

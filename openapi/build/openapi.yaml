@@ -263,9 +263,9 @@ components:
             name: name
             damageOption: x
             text: text
+          weakness: null
           imageUrl: imageUrl
           name: name
-          weekness: null
           ability:
             name: name
             text: text
@@ -292,9 +292,9 @@ components:
             name: name
             damageOption: x
             text: text
+          weakness: null
           imageUrl: imageUrl
           name: name
-          weekness: null
           ability:
             name: name
             text: text
@@ -404,6 +404,8 @@ components:
             type: array
         required:
         - cards
+        - energies
+        - name
         type: object
     masterCard:
       oneOf:
@@ -426,7 +428,7 @@ components:
             type: array
           ability:
             $ref: '#/components/schemas/ability'
-          weekness:
+          weakness:
             $ref: '#/components/schemas/element'
           retreatCost:
             description: 逃げるコスト
@@ -442,8 +444,9 @@ components:
             type: string
         required:
         - hp
+        - rarity
         - skills
-        - weekness
+        - weakness
         type: object
       example:
         retreatCost: 1
@@ -468,9 +471,9 @@ components:
           name: name
           damageOption: x
           text: text
+        weakness: null
         imageUrl: imageUrl
         name: name
-        weekness: null
         ability:
           name: name
           text: text
@@ -542,7 +545,6 @@ components:
       required:
       - cost
       - damage
-      - damageOption
       - name
       - text
       type: object
@@ -583,11 +585,7 @@ components:
           text:
             description: 説明文
             type: string
-          effect:
-            description: 効果
-            type: string
         required:
-        - effect
         - text
         type: object
     masterGoodsCard:
@@ -598,11 +596,7 @@ components:
           text:
             description: 説明文
             type: string
-          effect:
-            description: 効果
-            type: string
         required:
-        - effect
         - text
         type: object
     card:

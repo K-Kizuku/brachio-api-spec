@@ -155,3 +155,20 @@ components:
         - metal
         - dragon
         - normal
+
+    masterCardWithCount:
+      type: object
+      required:
+        - masterCard
+        - count
+      properties:
+        masterCard:
+          $ref: "#/components/schemas/masterCard"
+        count:
+          type: integer
+          description: カード枚数
+    
+    myCardList:
+      type: array
+      items:
+        $ref: "#/components/schemas/masterCardWithCount"

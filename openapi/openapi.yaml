@@ -23,6 +23,8 @@ paths:
     $ref: './paths/deck.yaml#/decks'
   /decks/{deckId}:
     $ref: './paths/deck.yaml#/deckWithId'
+  /cards:
+    $ref: './paths/card.yaml#/getCards'
   /ws:
     $ref: './paths/ws.yaml#/ws'
   /:

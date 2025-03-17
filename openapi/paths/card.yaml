@@ -1,0 +1,14 @@
+getCards:
+  get:
+    summary: 取得済みカード一覧の取得
+    description: 取得済みカード一覧を取得する
+    operationId: getCards
+    tags:
+      - card
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/masterCard.yaml#/components/schemas/myCardList"

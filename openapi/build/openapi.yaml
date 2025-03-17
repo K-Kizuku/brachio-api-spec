@@ -177,6 +177,20 @@ paths:
       summary: デッキを更新
       tags:
       - deck
+  /cards:
+    get:
+      description: 取得済みカード一覧を取得する
+      operationId: getCards
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/myCardList'
+          description: OK
+      summary: 取得済みカード一覧の取得
+      tags:
+      - card
   /ws:
     get:
       operationId: ws
@@ -407,6 +421,53 @@ components:
         - energies
         - name
         type: object
+    myCardList:
+      items:
+        $ref: '#/components/schemas/masterCardWithCount'
+      type: array
+    masterCardWithCount:
+      example:
+        count: 0
+        masterCard:
+          retreatCost: 1
+          masterCardId: masterCardId
+          cardType: monster
+          hp: 60
+          evolvesTo: フシギバナ
+          evolvesFrom: フシギダネ
+          expansion: expansion
+          skills:
+          - damage: 6
+            cost:
+            - grass
+            - grass
+            name: name
+            damageOption: x
+            text: text
+          - damage: 6
+            cost:
+            - grass
+            - grass
+            name: name
+            damageOption: x
+            text: text
+          weakness: null
+          imageUrl: imageUrl
+          name: name
+          ability:
+            name: name
+            text: text
+          rarity: 0
+      properties:
+        masterCard:
+          $ref: '#/components/schemas/masterCard'
+        count:
+          description: カード枚数
+          type: integer
+      required:
+      - count
+      - masterCard
+      type: object
     masterCard:
       oneOf:
       - $ref: '#/components/schemas/masterMonsterCard'

@@ -1,0 +1,14 @@
+components:
+  schemas:
+    card:
+      allOf:
+        - $ref: './masterCard.yaml#/components/schemas/masterCard'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              description: カードID
+              readOnly: true
+

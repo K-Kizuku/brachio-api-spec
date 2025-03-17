@@ -1,0 +1,16 @@
+getMyItems:
+  get:
+    tags:
+      - item
+    summary: 所持アイテム一覧取得
+    description: 所持アイテム一覧を取得します。
+    operationId: getMyItemList
+    responses:
+      "200":
+        description: アイテム一覧
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../components/schemas/item.yaml#/components/schemas/item'

@@ -1,0 +1,7 @@
+exclude:
+  - .github/
+  - build/
+  - docs/
+formatter:
+  type: basic
+  retain_line_breaks_single: true

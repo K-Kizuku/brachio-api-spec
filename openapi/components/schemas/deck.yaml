@@ -1,0 +1,58 @@
+components:
+  schemas:
+    deckBase:
+      type: object
+      description: デッキ
+      required:
+        - name
+        - thumbnailCard
+        - color
+      properties:
+        id:
+          type: string
+          description: デッキID
+          readOnly: true
+        name:
+          type: string
+          description: デッキ名
+        thumbnailCard:
+          $ref: './card.yaml#/components/schemas/card'
+        color:
+          $ref: './masterCard.yaml#/components/schemas/element'
+    deckBaseWithId:
+      allOf:
+        - $ref: '#/components/schemas/deckBase'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              description: デッキID
+              readOnly: true
+    deck:
+      allOf:
+        - $ref: '#/components/schemas/deckBase'
+        - type: object
+          required:
+            - cards
+          properties:
+            cards:
+              type: array
+              items:
+                $ref: './card.yaml#/components/schemas/card'
+            energies:
+              type: array
+              items:
+                $ref: './masterCard.yaml#/components/schemas/element'
+    deckWithId:
+      allOf:
+        - $ref: '#/components/schemas/deck'
+        - type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              description: デッキID
+              readOnly: true

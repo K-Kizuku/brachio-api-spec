@@ -1,0 +1,35 @@
+openapi: '3.0.4'
+info:
+  version: 0.0.1
+  title: Hackz Hackathon Brachio CUP API Spec
+  description: Hackz Hackathon Brachio CUP のAPI仕様書。
+servers:
+  - url: http://localhost:8080
+    description: ローカルサーバー
+tags:
+  - name: gacha
+    description: ガチャに関するAPI
+
+paths:
+  /gachas:
+    $ref: './paths/gacha.yaml#/getGachaList'
+  /gachas/power:
+    $ref: './paths/gacha.yaml#/getGachaPower'
+  /gachas/{gachaId}:
+    $ref: './paths/gacha.yaml#/drawGacha'
+  /items:
+    $ref: './paths/item.yaml#/getMyItems'
+  /decks:
+    $ref: './paths/deck.yaml#/decks'
+  /decks/{deckId}:
+    $ref: './paths/deck.yaml#/deckWithId'
+  /ws:
+    $ref: './paths/ws.yaml#/ws'
+  /:
+    get:
+      summary: health check
+      operationId: healthCheck
+      responses:
+        '200':
+          description: OK
+

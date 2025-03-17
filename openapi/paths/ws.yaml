@@ -1,0 +1,7 @@
+ws:
+  get:
+    summary: Websocket接続
+    operationId: ws
+    responses:
+      '200':
+        description: OK

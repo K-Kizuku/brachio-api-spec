@@ -1,0 +1,53 @@
+components:
+  schemas:
+    gacha:
+      type: object
+      required:
+        - id
+        - name
+        - imageUrl
+      properties:
+        id:
+          type: string
+          description: ガチャID
+          readOnly: true
+        name:
+          type: string
+          description: ガチャ名
+        imageUrl:
+          type: string
+          description: ガチャ画像URL
+    gachaPower:
+      type: object
+      required:
+        - next
+        - charged
+      properties:
+        next:
+          type: integer
+          description: 次のガチャパワーが貯まるまでの秒数
+        charged:
+          type: integer
+          description: 現在のガチャパワー
+    pack:
+      type: object
+      required:
+        - id
+        - name
+        - imageUrl
+        - price
+        - gachaPower
+      properties:
+        cards:
+          type: array
+          items:
+            $ref: './masterCard.yaml#/components/schemas/masterCard'
+    drawGachaRequest:
+      type: object
+      required:
+        - isTenDraw
+      properties:
+        isTenDraw:
+          type: boolean
+          description: 10連ガチャかどうか
+          default: false

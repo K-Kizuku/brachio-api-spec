@@ -1,0 +1,59 @@
+getGachaList:
+  get:
+    tags:
+      - gacha
+    summary: ガチャ一覧取得
+    description: ガチャ一覧を取得する
+    operationId: getGachaList
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../components/schemas/gacha.yaml#/components/schemas/gacha'
+getGachaPower:
+  get:
+    tags:
+      - gacha
+    summary: ガチャの強さ取得
+    description: ガチャの強さを取得する
+    operationId: getGachaPower
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              $ref: '../components/schemas/gacha.yaml#/components/schemas/gachaPower'
+drawGacha:
+  post:
+    tags:
+      - gacha
+    summary: ガチャを引く
+    description: ガチャを引く
+    operationId: drawGacha
+    parameters:
+      - in: path
+        name: gachaId
+        required: true
+        schema:
+          type: string
+        description: ガチャID
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '../components/schemas/gacha.yaml#/components/schemas/drawGachaRequest'
+    responses:
+      "200":
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '../components/schemas/gacha.yaml#/components/schemas/pack'

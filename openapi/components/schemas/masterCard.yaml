@@ -1,0 +1,165 @@
+components:
+  schemas:
+    masterCard:
+      oneOf:
+        - $ref: '#/components/schemas/masterMonsterCard'
+        - $ref: '#/components/schemas/masterSupporterCard'
+        - $ref: '#/components/schemas/masterGoodsCard'
+    masterCardType:
+      type: string
+      enum:
+        - monster
+        - supporter
+        - goods
+
+    masterCardBase:
+      type: object
+      description: 全カード共通のプロパティ
+      required:
+        - masterCardId
+        - name
+        - cardType
+        - imageUrl
+      properties:
+        masterCardId:
+          type: string
+          description: カードID
+          readOnly: true
+        name:
+          type: string
+          description: カード名
+        cardType:
+          $ref: '#/components/schemas/masterCardType'
+        rarity:
+          type: string
+          description: レアリティ
+        imageUrl:
+          type: string
+          description: カード画像URL
+        expansion:
+          type: string
+          description: カードセット名
+    masterMonsterCard:
+      allOf:
+        - $ref: '#/components/schemas/masterCardBase'
+        - type: object
+          description: モンスターカードのプロパティ
+          required:
+            - hp
+            - skills
+            - weekness
+          properties:
+            hp:
+              type: integer
+              description: HP
+              example: 60
+            skills:
+              type: array
+              description: ワザ
+              items:
+                $ref: '#/components/schemas/skill'
+            ability:
+              $ref: '#/components/schemas/ability'
+            weekness:
+              $ref: '#/components/schemas/element'
+            retreatCost:
+              type: integer
+              description: 逃げるコスト
+              example: 1
+            evolvesFrom:
+              type: string
+              description: 進化元
+              example: フシギダネ
+            evolvesTo:
+              type: string
+              description: 進化先
+              example: フシギバナ
+    masterSupporterCard:
+      allOf:
+        - $ref: '#/components/schemas/masterCardBase'
+        - type: object
+          description: サポーターカードのプロパティ
+          required:
+            - text
+            - effect
+          properties:
+            text:
+              type: string
+              description: 説明文
+            effect:
+              type: string
+              description: 効果
+    masterGoodsCard:
+      allOf:
+        - $ref: '#/components/schemas/masterCardBase'
+        - type: object
+          description: グッズカードのプロパティ
+          required:
+            - text
+            - effect
+          properties:
+            text:
+              type: string
+              description: 説明文
+            effect:
+              type: string
+              description: 効果
+
+    skill:
+      type: object
+      description: ワザ
+      required:
+        - name
+        - text
+        - damage
+        - damageOption
+        - cost
+      properties:
+        name:
+          type: string
+          description: ワザ名
+        text:
+          type: string
+          description: 説明文
+        damage:
+          type: integer
+          description: ダメージ
+        damageOption:
+          type: string
+          description: x or +
+          enum:
+            - x
+            - +
+        cost:
+          type: array
+          description: コスト
+          items:
+            $ref: '#/components/schemas/element'
+
+    ability:
+      type: object
+      description: 特性
+      required:
+        - name
+        - text
+      properties:
+        name:
+          type: string
+          description: 特性名
+        text:
+          type: string
+          description: 説明文
+
+    element:
+      type: string
+      enum:
+        - grass
+        - fire
+        - water
+        - lightning
+        - psychic
+        - fighting
+        - darkness
+        - metal
+        - dragon
+        - normal

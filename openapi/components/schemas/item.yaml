@@ -1,0 +1,18 @@
+components:
+  schemas:
+    item:
+      type: object
+      required:
+        - id
+        - name
+        - count
+      properties:
+        id:
+          type: string
+          description: アイテムID（アイテムごとに一意）
+        name:
+          type: string
+          description: アイテム名
+        count:
+          type: integer
+          description: 所持数

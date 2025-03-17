@@ -1,0 +1,632 @@
+openapi: 3.0.4
+info:
+  description: Hackz Hackathon Brachio CUP のAPI仕様書。
+  title: Hackz Hackathon Brachio CUP API Spec
+  version: 0.0.1
+servers:
+- description: ローカルサーバー
+  url: http://localhost:8080
+tags:
+- description: ガチャに関するAPI
+  name: gacha
+paths:
+  /gachas:
+    get:
+      description: ガチャ一覧を取得する
+      operationId: getGachaList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/gacha'
+                type: array
+          description: OK
+      summary: ガチャ一覧取得
+      tags:
+      - gacha
+  /gachas/power:
+    get:
+      description: ガチャの強さを取得する
+      operationId: getGachaPower
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gachaPower'
+          description: OK
+      summary: ガチャの強さ取得
+      tags:
+      - gacha
+  /gachas/{gachaId}:
+    post:
+      description: ガチャを引く
+      operationId: drawGacha
+      parameters:
+      - description: ガチャID
+        in: path
+        name: gachaId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/drawGachaRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/pack'
+                type: array
+          description: OK
+      summary: ガチャを引く
+      tags:
+      - gacha
+  /items:
+    get:
+      description: 所持アイテム一覧を取得します。
+      operationId: getMyItemList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/item'
+                type: array
+          description: アイテム一覧
+      summary: 所持アイテム一覧取得
+      tags:
+      - item
+  /decks:
+    get:
+      description: 自身のデッキリストを取得する
+      operationId: getDeckList
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/deckBaseWithId'
+                type: array
+          description: OK
+      summary: 自身のデッキリストを取得
+      tags:
+      - deck
+    post:
+      description: 空のデッキを作成する
+      operationId: createNewDeck
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/createNewDeck_201_response'
+          description: Created
+      summary: 空のデッキを作成
+      tags:
+      - deck
+  /decks/{deckId}:
+    delete:
+      description: デッキを削除する
+      operationId: deleteDeck
+      parameters:
+      - description: デッキID
+        in: path
+        name: deckId
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: No Content
+      summary: デッキを削除
+      tags:
+      - deck
+    get:
+      description: デッキを取得する
+      operationId: getDeck
+      parameters:
+      - description: デッキID
+        in: path
+        name: deckId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/deckWithId'
+                type: array
+          description: OK
+      summary: デッキを取得
+      tags:
+      - deck
+    put:
+      description: デッキを更新する
+      operationId: updateDeck
+      parameters:
+      - description: デッキID
+        in: path
+        name: deckId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deck'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deckWithId'
+          description: OK
+      summary: デッキを更新
+      tags:
+      - deck
+  /ws:
+    get:
+      operationId: ws
+      responses:
+        "200":
+          description: OK
+      summary: Websocket接続
+  /:
+    get:
+      operationId: healthCheck
+      responses:
+        "200":
+          description: OK
+      summary: health check
+components:
+  schemas:
+    gacha:
+      example:
+        imageUrl: imageUrl
+        name: name
+        id: id
+      properties:
+        id:
+          description: ガチャID
+          readOnly: true
+          type: string
+        name:
+          description: ガチャ名
+          type: string
+        imageUrl:
+          description: ガチャ画像URL
+          type: string
+      required:
+      - id
+      - imageUrl
+      - name
+      type: object
+    gachaPower:
+      example:
+        next: 0
+        charged: 6
+      properties:
+        next:
+          description: 次のガチャパワーが貯まるまでの秒数
+          type: integer
+        charged:
+          description: 現在のガチャパワー
+          type: integer
+      required:
+      - charged
+      - next
+      type: object
+    drawGachaRequest:
+      properties:
+        isTenDraw:
+          default: false
+          description: 10連ガチャかどうか
+          type: boolean
+      required:
+      - isTenDraw
+      type: object
+    pack:
+      example:
+        cards:
+        - retreatCost: 1
+          masterCardId: masterCardId
+          cardType: monster
+          hp: 60
+          evolvesTo: フシギバナ
+          evolvesFrom: フシギダネ
+          expansion: expansion
+          skills:
+          - damage: 0
+            cost:
+            - grass
+            - grass
+            name: name
+            damageOption: x
+            text: text
+          - damage: 0
+            cost:
+            - grass
+            - grass
+            name: name
+            damageOption: x
+            text: text
+          imageUrl: imageUrl
+          name: name
+          weekness: null
+          ability:
+            name: name
+            text: text
+          rarity: rarity
+        - retreatCost: 1
+          masterCardId: masterCardId
+          cardType: monster
+          hp: 60
+          evolvesTo: フシギバナ
+          evolvesFrom: フシギダネ
+          expansion: expansion
+          skills:
+          - damage: 0
+            cost:
+            - grass
+            - grass
+            name: name
+            damageOption: x
+            text: text
+          - damage: 0
+            cost:
+            - grass
+            - grass
+            name: name
+            damageOption: x
+            text: text
+          imageUrl: imageUrl
+          name: name
+          weekness: null
+          ability:
+            name: name
+            text: text
+          rarity: rarity
+      properties:
+        cards:
+          items:
+            $ref: '#/components/schemas/masterCard'
+          type: array
+      required:
+      - gachaPower
+      - id
+      - imageUrl
+      - name
+      - price
+      type: object
+    item:
+      example:
+        name: name
+        count: 0
+        id: id
+      properties:
+        id:
+          description: アイテムID（アイテムごとに一意）
+          type: string
+        name:
+          description: アイテム名
+          type: string
+        count:
+          description: 所持数
+          type: integer
+      required:
+      - count
+      - id
+      - name
+      type: object
+    deckBaseWithId:
+      allOf:
+      - $ref: '#/components/schemas/deckBase'
+      - properties:
+          id:
+            description: デッキID
+            readOnly: true
+            type: string
+        required:
+        - id
+        type: object
+      example:
+        color: grass
+        name: name
+        id: id
+        thumbnailCard:
+          id: id
+    deckBase:
+      description: デッキ
+      properties:
+        id:
+          description: デッキID
+          readOnly: true
+          type: string
+        name:
+          description: デッキ名
+          type: string
+        thumbnailCard:
+          $ref: '#/components/schemas/card'
+        color:
+          $ref: '#/components/schemas/element'
+      required:
+      - color
+      - name
+      - thumbnailCard
+      type: object
+    deckWithId:
+      allOf:
+      - $ref: '#/components/schemas/deck'
+      - properties:
+          id:
+            description: デッキID
+            readOnly: true
+            type: string
+        required:
+        - id
+        type: object
+      example:
+        energies:
+        - null
+        - null
+        cards:
+        - id: id
+        - id: id
+        color: grass
+        name: name
+        id: id
+        thumbnailCard:
+          id: id
+    deck:
+      allOf:
+      - $ref: '#/components/schemas/deckBase'
+      - properties:
+          cards:
+            items:
+              $ref: '#/components/schemas/card'
+            type: array
+          energies:
+            items:
+              $ref: '#/components/schemas/element'
+            type: array
+        required:
+        - cards
+        type: object
+    masterCard:
+      oneOf:
+      - $ref: '#/components/schemas/masterMonsterCard'
+      - $ref: '#/components/schemas/masterSupporterCard'
+      - $ref: '#/components/schemas/masterGoodsCard'
+    masterMonsterCard:
+      allOf:
+      - $ref: '#/components/schemas/masterCardBase'
+      - description: モンスターカードのプロパティ
+        properties:
+          hp:
+            description: HP
+            example: 60
+            type: integer
+          skills:
+            description: ワザ
+            items:
+              $ref: '#/components/schemas/skill'
+            type: array
+          ability:
+            $ref: '#/components/schemas/ability'
+          weekness:
+            $ref: '#/components/schemas/element'
+          retreatCost:
+            description: 逃げるコスト
+            example: 1
+            type: integer
+          evolvesFrom:
+            description: 進化元
+            example: フシギダネ
+            type: string
+          evolvesTo:
+            description: 進化先
+            example: フシギバナ
+            type: string
+        required:
+        - hp
+        - skills
+        - weekness
+        type: object
+      example:
+        retreatCost: 1
+        masterCardId: masterCardId
+        cardType: monster
+        hp: 60
+        evolvesTo: フシギバナ
+        evolvesFrom: フシギダネ
+        expansion: expansion
+        skills:
+        - damage: 0
+          cost:
+          - grass
+          - grass
+          name: name
+          damageOption: x
+          text: text
+        - damage: 0
+          cost:
+          - grass
+          - grass
+          name: name
+          damageOption: x
+          text: text
+        imageUrl: imageUrl
+        name: name
+        weekness: null
+        ability:
+          name: name
+          text: text
+        rarity: rarity
+    masterCardBase:
+      description: 全カード共通のプロパティ
+      properties:
+        masterCardId:
+          description: カードID
+          readOnly: true
+          type: string
+        name:
+          description: カード名
+          type: string
+        cardType:
+          $ref: '#/components/schemas/masterCardType'
+        rarity:
+          description: レアリティ
+          type: string
+        imageUrl:
+          description: カード画像URL
+          type: string
+        expansion:
+          description: カードセット名
+          type: string
+      required:
+      - cardType
+      - imageUrl
+      - masterCardId
+      - name
+      type: object
+    masterCardType:
+      enum:
+      - monster
+      - supporter
+      - goods
+      type: string
+    skill:
+      description: ワザ
+      example:
+        damage: 0
+        cost:
+        - grass
+        - grass
+        name: name
+        damageOption: x
+        text: text
+      properties:
+        name:
+          description: ワザ名
+          type: string
+        text:
+          description: 説明文
+          type: string
+        damage:
+          description: ダメージ
+          type: integer
+        damageOption:
+          description: x or +
+          enum:
+          - x
+          - "+"
+          type: string
+        cost:
+          description: コスト
+          items:
+            $ref: '#/components/schemas/element'
+          type: array
+      required:
+      - cost
+      - damage
+      - damageOption
+      - name
+      - text
+      type: object
+    element:
+      enum:
+      - grass
+      - fire
+      - water
+      - lightning
+      - psychic
+      - fighting
+      - darkness
+      - metal
+      - dragon
+      - normal
+      type: string
+    ability:
+      description: 特性
+      example:
+        name: name
+        text: text
+      properties:
+        name:
+          description: 特性名
+          type: string
+        text:
+          description: 説明文
+          type: string
+      required:
+      - name
+      - text
+      type: object
+    masterSupporterCard:
+      allOf:
+      - $ref: '#/components/schemas/masterCardBase'
+      - description: サポーターカードのプロパティ
+        properties:
+          text:
+            description: 説明文
+            type: string
+          effect:
+            description: 効果
+            type: string
+        required:
+        - effect
+        - text
+        type: object
+    masterGoodsCard:
+      allOf:
+      - $ref: '#/components/schemas/masterCardBase'
+      - description: グッズカードのプロパティ
+        properties:
+          text:
+            description: 説明文
+            type: string
+          effect:
+            description: 効果
+            type: string
+        required:
+        - effect
+        - text
+        type: object
+    card:
+      allOf:
+      - $ref: '#/components/schemas/masterCard'
+      - properties:
+          id:
+            description: カードID
+            readOnly: true
+            type: string
+        required:
+        - id
+        type: object
+      example:
+        id: id
+    createNewDeck_201_response:
+      example:
+        id: id
+      properties:
+        id:
+          description: デッキID
+          type: string
+      required:
+      - id
+      type: object

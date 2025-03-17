@@ -249,14 +249,14 @@ components:
           evolvesFrom: フシギダネ
           expansion: expansion
           skills:
-          - damage: 0
+          - damage: 6
             cost:
             - grass
             - grass
             name: name
             damageOption: x
             text: text
-          - damage: 0
+          - damage: 6
             cost:
             - grass
             - grass
@@ -269,7 +269,7 @@ components:
           ability:
             name: name
             text: text
-          rarity: rarity
+          rarity: 0
         - retreatCost: 1
           masterCardId: masterCardId
           cardType: monster
@@ -278,14 +278,14 @@ components:
           evolvesFrom: フシギダネ
           expansion: expansion
           skills:
-          - damage: 0
+          - damage: 6
             cost:
             - grass
             - grass
             name: name
             damageOption: x
             text: text
-          - damage: 0
+          - damage: 6
             cost:
             - grass
             - grass
@@ -298,7 +298,7 @@ components:
           ability:
             name: name
             text: text
-          rarity: rarity
+          rarity: 0
       properties:
         cards:
           items:
@@ -454,14 +454,14 @@ components:
         evolvesFrom: フシギダネ
         expansion: expansion
         skills:
-        - damage: 0
+        - damage: 6
           cost:
           - grass
           - grass
           name: name
           damageOption: x
           text: text
-        - damage: 0
+        - damage: 6
           cost:
           - grass
           - grass
@@ -474,7 +474,7 @@ components:
         ability:
           name: name
           text: text
-        rarity: rarity
+        rarity: 0
     masterCardBase:
       description: 全カード共通のプロパティ
       properties:
@@ -489,7 +489,7 @@ components:
           $ref: '#/components/schemas/masterCardType'
         rarity:
           description: レアリティ
-          type: string
+          type: integer
         imageUrl:
           description: カード画像URL
           type: string
@@ -511,7 +511,7 @@ components:
     skill:
       description: ワザ
       example:
-        damage: 0
+        damage: 6
         cost:
         - grass
         - grass

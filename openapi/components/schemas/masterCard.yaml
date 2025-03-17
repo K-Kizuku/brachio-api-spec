@@ -2,9 +2,9 @@ components:
   schemas:
     masterCard:
       oneOf:
-        - $ref: '#/components/schemas/masterMonsterCard'
-        - $ref: '#/components/schemas/masterSupporterCard'
-        - $ref: '#/components/schemas/masterGoodsCard'
+        - $ref: "#/components/schemas/masterMonsterCard"
+        - $ref: "#/components/schemas/masterSupporterCard"
+        - $ref: "#/components/schemas/masterGoodsCard"
     masterCardType:
       type: string
       enum:
@@ -29,9 +29,9 @@ components:
           type: string
           description: カード名
         cardType:
-          $ref: '#/components/schemas/masterCardType'
+          $ref: "#/components/schemas/masterCardType"
         rarity:
-          type: string
+          type: integer
           description: レアリティ
         imageUrl:
           type: string
@@ -41,7 +41,7 @@ components:
           description: カードセット名
     masterMonsterCard:
       allOf:
-        - $ref: '#/components/schemas/masterCardBase'
+        - $ref: "#/components/schemas/masterCardBase"
         - type: object
           description: モンスターカードのプロパティ
           required:
@@ -57,11 +57,11 @@ components:
               type: array
               description: ワザ
               items:
-                $ref: '#/components/schemas/skill'
+                $ref: "#/components/schemas/skill"
             ability:
-              $ref: '#/components/schemas/ability'
+              $ref: "#/components/schemas/ability"
             weekness:
-              $ref: '#/components/schemas/element'
+              $ref: "#/components/schemas/element"
             retreatCost:
               type: integer
               description: 逃げるコスト
@@ -76,7 +76,7 @@ components:
               example: フシギバナ
     masterSupporterCard:
       allOf:
-        - $ref: '#/components/schemas/masterCardBase'
+        - $ref: "#/components/schemas/masterCardBase"
         - type: object
           description: サポーターカードのプロパティ
           required:
@@ -91,7 +91,7 @@ components:
               description: 効果
     masterGoodsCard:
       allOf:
-        - $ref: '#/components/schemas/masterCardBase'
+        - $ref: "#/components/schemas/masterCardBase"
         - type: object
           description: グッズカードのプロパティ
           required:
@@ -134,7 +134,7 @@ components:
           type: array
           description: コスト
           items:
-            $ref: '#/components/schemas/element'
+            $ref: "#/components/schemas/element"
 
     ability:
       type: object

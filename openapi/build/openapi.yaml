@@ -265,15 +265,15 @@ components:
           skills:
           - damage: 6
             cost:
-            - grass
-            - grass
+            - null
+            - null
             name: name
             damageOption: x
             text: text
           - damage: 6
             cost:
-            - grass
-            - grass
+            - null
+            - null
             name: name
             damageOption: x
             text: text
@@ -284,6 +284,7 @@ components:
             name: name
             text: text
           rarity: 0
+          element: grass
         - retreatCost: 1
           masterCardId: masterCardId
           cardType: monster
@@ -294,15 +295,15 @@ components:
           skills:
           - damage: 6
             cost:
-            - grass
-            - grass
+            - null
+            - null
             name: name
             damageOption: x
             text: text
           - damage: 6
             cost:
-            - grass
-            - grass
+            - null
+            - null
             name: name
             damageOption: x
             text: text
@@ -313,6 +314,7 @@ components:
             name: name
             text: text
           rarity: 0
+          element: grass
       properties:
         cards:
           items:
@@ -439,15 +441,15 @@ components:
           skills:
           - damage: 6
             cost:
-            - grass
-            - grass
+            - null
+            - null
             name: name
             damageOption: x
             text: text
           - damage: 6
             cost:
-            - grass
-            - grass
+            - null
+            - null
             name: name
             damageOption: x
             text: text
@@ -458,6 +460,7 @@ components:
             name: name
             text: text
           rarity: 0
+          element: grass
       properties:
         masterCard:
           $ref: '#/components/schemas/masterCard'
@@ -482,6 +485,10 @@ components:
             description: HP
             example: 60
             type: integer
+          element:
+            $ref: '#/components/schemas/element'
+          weakness:
+            $ref: '#/components/schemas/element'
           skills:
             description: ワザ
             items:
@@ -489,8 +496,6 @@ components:
             type: array
           ability:
             $ref: '#/components/schemas/ability'
-          weakness:
-            $ref: '#/components/schemas/element'
           retreatCost:
             description: 逃げるコスト
             example: 1
@@ -504,6 +509,7 @@ components:
             example: フシギバナ
             type: string
         required:
+        - element
         - hp
         - rarity
         - skills
@@ -520,15 +526,15 @@ components:
         skills:
         - damage: 6
           cost:
-          - grass
-          - grass
+          - null
+          - null
           name: name
           damageOption: x
           text: text
         - damage: 6
           cost:
-          - grass
-          - grass
+          - null
+          - null
           name: name
           damageOption: x
           text: text
@@ -539,6 +545,7 @@ components:
           name: name
           text: text
         rarity: 0
+        element: grass
     masterCardBase:
       description: 全カード共通のプロパティ
       properties:
@@ -572,13 +579,26 @@ components:
       - supporter
       - goods
       type: string
+    element:
+      enum:
+      - grass
+      - fire
+      - water
+      - lightning
+      - psychic
+      - fighting
+      - darkness
+      - metal
+      - dragon
+      - normal
+      type: string
     skill:
       description: ワザ
       example:
         damage: 6
         cost:
-        - grass
-        - grass
+        - null
+        - null
         name: name
         damageOption: x
         text: text
@@ -609,19 +629,6 @@ components:
       - name
       - text
       type: object
-    element:
-      enum:
-      - grass
-      - fire
-      - water
-      - lightning
-      - psychic
-      - fighting
-      - darkness
-      - metal
-      - dragon
-      - normal
-      type: string
     ability:
       description: 特性
       example:

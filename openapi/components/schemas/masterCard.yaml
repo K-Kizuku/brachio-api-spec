@@ -46,14 +46,19 @@ components:
           description: モンスターカードのプロパティ
           required:
             - hp
-            - skills
+            - element
             - weakness
+            - skills
             - rarity
           properties:
             hp:
               type: integer
               description: HP
               example: 60
+            element:
+              $ref: "#/components/schemas/element"
+            weakness:
+              $ref: "#/components/schemas/element"
             skills:
               type: array
               description: ワザ
@@ -61,8 +66,6 @@ components:
                 $ref: "#/components/schemas/skill"
             ability:
               $ref: "#/components/schemas/ability"
-            weakness:
-              $ref: "#/components/schemas/element"
             retreatCost:
               type: integer
               description: 逃げるコスト

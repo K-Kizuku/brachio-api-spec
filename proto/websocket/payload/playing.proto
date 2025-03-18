@@ -3,14 +3,14 @@ syntax = "proto3";
 package websocket.payload.playing;
 
 import "messages/card.proto";
+import "messages/ability.proto";
+import "messages/common.proto";
 
 message AttackMonsterPayload {
-  // 攻撃者のモンスターID
-  int32 attackerId = 1;
-  // 攻撃対象のモンスターID
-  int32 targetId = 2;
-  // 技のID
-  int32 skillId = 3;
+  // 攻撃者のモンスター
+  messages.card.Card attacker = 1;
+  // 技のインデックス
+  int32 skill = 2;
 }
 
 message SummonMonsterPayload {
@@ -22,22 +22,81 @@ message SummonMonsterPayload {
 
 message EvolutionMonsterPayload {
   // 進化するモンスター
-  string cardId = 1;
+  messages.card.Card card = 1;
   // 進化する場所
   int32 position = 2;
 }
 
 message TakeSupportPayload {
   // サポートカード
-  string cardId = 1;
+  messages.card.Card card = 1;
   // サポートの対象のカードのID
-  optional string targetCardId = 2;
+  messages.card.Card target = 2;
 }
 
 message TakeGoodsPayload {
-  // アイテムID
-  string cardId = 1;
+  // アイテム
+  messages.card.Card card = 1;
   // グッズ効果の対象のカード
-  optional string targetCardId = 2;
+  repeated messages.card.Card targets = 2;
 }
 
+message RetreatEventPayload {
+  // 退却するモンスター
+  messages.card.Card card = 1;
+  // 逃げる場所
+  int32 position = 2;
+}
+
+message SupplyEnergyEventPayload {
+  // エネルギーを供給するモンスター
+  messages.card.Card card = 1;
+  // 供給するエネルギー
+  repeated messages.common.Element energies = 2;
+}
+
+message SurrenderEventPayload {
+  // 降参するユーザーのID
+  string userId = 1;
+}
+
+message AbilityEventPayload {
+  // 発動するラムモン
+  messages.card.Card card = 1;
+  // 発動する特性
+  messages.ability.Ability ability = 2;
+}
+
+message DrawCardEventPayload {
+  // 山札から引くカードの枚数
+  int32 count = 1;
+}
+
+message DrawCardEventIndividualPayload {
+  // 山札から引くカードの枚数
+  int32 count = 1;
+  // 山札から引くカード
+  repeated messages.card.Card cards = 2;
+}
+
+message ConfirmActionEventPayload { repeated Action actions = 1; }
+
+enum ActionType {
+  UNKNOWN = 0;
+  ATTACK_MONSTER = 1;
+  SUMMON_MONSTER = 2;
+  EVOLUTION_MONSTER = 3;
+  TAKE_SUPPORT = 4;
+  TAKE_GOODS = 5;
+  RETREAT = 6;
+  SUPPLY_ENERGY = 7;
+  SURRENDER = 8;
+  ABILITY = 9;
+  DRAW = 10;
+}
+
+message Action {
+  ActionType type = 1;
+  // 行動するラムモンorアイテム
+  optional messages.card.Card target = 2;
+}

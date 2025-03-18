@@ -2,8 +2,9 @@ syntax = "proto3";
 
 package messages.item;
 
+// アイテム
 message Item {
-  // アイテムID（アイテムごとに一意）
+  // アイテムID（各アイテムごとに一意）
   string id = 1;
   // アイテム名
   string name = 2;

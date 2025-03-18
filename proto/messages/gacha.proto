@@ -2,11 +2,20 @@ syntax = "proto3";
 
 package messages.gacha;
 
+// ガチャ
 message Gacha {
-  // ガチャID
+  // ガチャID（readOnly）
   string id = 1;
   // ガチャ名
   string name = 2;
   // ガチャ画像URL
   string image_url = 3;
+}
+
+// ガチャの強さ
+message GachaPower {
+  // 次のガチャパワーが貯まるまでの秒数
+  int32 next = 1;
+  // 現在のガチャパワー
+  int32 charged = 2;
 }

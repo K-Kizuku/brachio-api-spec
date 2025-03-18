@@ -6,14 +6,16 @@ package messages.skill;
 
 import "messages/common.proto";
 
+// ワザ
 message Skill {
-  string id = 1;
   // ワザ名
-  string name = 2;
-  // ワザの説明
-  string text = 3;
+  string name = 1;
+  // 説明文
+  string text = 2;
   // ダメージ
-  int32 damage = 4;
-  // コスト（エネルギーの属性）
+  int32 damage = 3;
+  // ダメージオプション（"x" または "+"）
+  common.DamageOption damage_option = 4;
+  // コスト（Element の配列）
   repeated common.Element cost = 5;
 }

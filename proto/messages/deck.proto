@@ -5,23 +5,45 @@ package messages.deck;
 import "messages/common.proto";
 import "messages/card.proto";
 
+// デッキ基本情報（id が必須の場合）
+message DeckBaseWithId {
+  string id = 1;
+  string name = 2;
+  card.Card thumbnail_card = 3;
+  common.Element color = 4;
+}
+
+// デッキ（deckBase に加え、カードリストとエネルギー属性を持つ）
 message Deck {
-  // デッキID
+  // デッキID（作成時は空の場合もあり）
+  string id = 1;
+  string name = 2;
+  card.Card thumbnail_card = 3;
+  common.Element color = 4;
+  // カードリスト
+  repeated card.Card cards = 5;
+  // エネルギーの属性リスト
+  repeated common.Element energies = 6;
+}
+
+// デッキの基本情報（id はオプショナルの場合もある）
+message DeckBase {
+  // デッキID（readOnly）
   string id = 1;
   // デッキ名
   string name = 2;
-  // エネルギーの属性
-  repeated common.Element elements = 3;
-  // カードリスト
-  repeated card.Card cards = 4;
+  // サムネイルカード
+  card.Card thumbnail_card = 3;
+  // 色（Element）
+  common.Element color = 4;
 }
 
-// デッキ作成リクエスト
-message CreateDeckRequest {
-  // デッキ名
-  string name = 1;
-  // エネルギーの属性
-  repeated common.Element elements = 2;
-  // カードIDリスト
-  repeated string card_ids = 3;
+// デッキ（id 必須バージョン）
+message DeckWithId {
+  string id = 1;
+  string name = 2;
+  card.Card thumbnail_card = 3;
+  common.Element color = 4;
+  repeated card.Card cards = 5;
+  repeated common.Element energies = 6;
 }

@@ -93,7 +93,9 @@ message MasterMonsterCard {
   // 進化元
   string evolves_from = 8;
   // 進化先
-  string evolves_to = 9;
+  repeated string evolves_to = 9;
+  // サブタイプ
+  common.SubType sub_type = 10;
 }
 
 // サポーターカード（マスターカードの一種）

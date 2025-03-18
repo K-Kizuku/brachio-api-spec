@@ -27,3 +27,10 @@ enum DamageOption {
   X = 1;
   PLUS = 2;
 }
+
+enum SubType {
+  SUB_TYPE_UNSPECIFIED = 0;
+  BASIC = 1;
+  STAGE1 = 2;
+  STAGE2 = 3;
+}

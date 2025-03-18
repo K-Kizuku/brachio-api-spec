@@ -4,15 +4,12 @@ syntax = "proto3";
 package websocket.event.playing;
 
 import "websocket/payload/playing.proto";
-import "messages/side_effect.proto";
 
 ////
 // ラムモン攻撃イベント
 ////
 message AttackMonsterEventToServer {
   websocket.payload.playing.AttackMonsterPayload payload = 1;
-  // 技の副作用に対する選択結果
-  repeated messages.side_effect.SideEffect sideEffect = 2;
 }
 
 // TODO:一旦保留

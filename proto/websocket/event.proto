@@ -90,5 +90,7 @@ message EventEnvelope {
         confirm_target_event_to_server = 42;
     websocket.event.playing.ConfirmTargetEventToActor
         confirm_target_event_to_actor = 43;
+    websocket.event.playing.NextEnergyEventToActor next_energy_event_to_actor =
+        44;
   }
 }

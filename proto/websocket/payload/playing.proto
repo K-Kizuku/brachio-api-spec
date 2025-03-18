@@ -155,3 +155,8 @@ message ConfirmTargetRequestPayload {
   // 必要なターゲット数
   int32 count = 2;
 }
+
+message NextEnergyPayload {
+  // 次のエネルギー
+  messages.common.Element energy = 1;
+}

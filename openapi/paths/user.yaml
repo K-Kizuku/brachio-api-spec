@@ -1,0 +1,21 @@
+getUser:
+  get:
+    tags:
+      - user
+    summary: Get user by user ID
+    description: Get user by user ID
+    operationId: getUser
+    parameters:
+      - name: userId
+        in: path
+        description: ID of user to return
+        required: true
+        schema:
+          type: string
+    responses:
+      "200":
+        description: successful operation
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/user.yaml#/components/schemas/user"

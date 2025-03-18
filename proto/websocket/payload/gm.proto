@@ -23,6 +23,7 @@ message CreateRoomEventPayload {
 message EnterRoomEventPayload {
   // ルームの合言葉
   string password = 1;
+  string deckId = 2;
 }
 
 // マッチング完了イベント

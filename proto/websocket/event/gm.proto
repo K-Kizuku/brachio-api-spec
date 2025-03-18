@@ -25,17 +25,11 @@ message ExchangeDeckEventToRecipient {
 }
 
 ////
-// ルーム作成イベント
-////
-message CreateRoomEventToServer {
-  websocket.payload.gm.CreateRoomEventPayload payload = 1;
-}
-
-////
 // ルーム入室イベント
 ////
 message EnterRoomEventToServer {
   websocket.payload.gm.EnterRoomEventPayload payload = 1;
+  string deckId = 2;
 }
 
 ////

@@ -99,7 +99,6 @@ message EventEnvelope {
         46;
     websocket.event.gm.ExchangeDeckEventToRecipient
         exchange_deck_event_to_recipient = 47;
-    websocket.event.gm.CreateRoomEventToServer create_room_event_to_server = 48;
     websocket.event.gm.EnterRoomEventToServer enter_room_event_to_server = 49;
     websocket.event.gm.MatchingCompleteEventToActor
         matching_complete_event_to_actor = 50;

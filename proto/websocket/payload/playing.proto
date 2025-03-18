@@ -41,45 +41,45 @@ message TakeGoodsPayload {
   repeated messages.card.Card targets = 2;
 }
 
-message RetreatEventPayload {
+message RetreatPayload {
   // 退却するモンスター
   messages.card.Card card = 1;
   // 逃げる場所
   int32 position = 2;
 }
 
-message SupplyEnergyEventPayload {
+message SupplyEnergyPayload {
   // エネルギーを供給するモンスター
   messages.card.Card card = 1;
   // 供給するエネルギー
   repeated messages.common.Element energies = 2;
 }
 
-message SurrenderEventPayload {
+message SurrenderPayload {
   // 降参するユーザーのID
   string userId = 1;
 }
 
-message AbilityEventPayload {
+message AbilityPayload {
   // 発動するラムモン
   messages.card.Card card = 1;
   // 発動する特性
   messages.ability.Ability ability = 2;
 }
 
-message DrawCardEventPayload {
+message DrawCardPayload {
   // 山札から引くカードの枚数
   int32 count = 1;
 }
 
-message DrawCardEventIndividualPayload {
+message DrawCardIndividualPayload {
   // 山札から引くカードの枚数
   int32 count = 1;
   // 山札から引くカード
   repeated messages.card.Card cards = 2;
 }
 
-message ConfirmActionEventPayload { repeated Action actions = 1; }
+message ConfirmActionPayload { repeated Action actions = 1; }
 
 enum ActionType {
   UNKNOWN = 0;
@@ -100,3 +100,5 @@ message Action {
   // 行動するラムモンorアイテム
   optional messages.card.Card target = 2;
 }
+
+message CoinTossPayload { repeated bool results = 1; }

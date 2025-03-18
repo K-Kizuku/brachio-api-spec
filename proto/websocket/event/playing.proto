@@ -108,17 +108,17 @@ message TakeGoodsEventToRecipient {
 // 逃げるイベント
 ////
 message RetreatEventToServer {
-  websocket.payload.playing.RetreatEventPayload payload = 1;
+  websocket.payload.playing.RetreatPayload payload = 1;
 }
 
 message RetreatEventToActor {
-  websocket.payload.playing.RetreatEventPayload payload = 1;
+  websocket.payload.playing.RetreatPayload payload = 1;
   // 逃げるユーザーのID
   string userId = 2;
 }
 
 message RetreatEventToRecipient {
-  websocket.payload.playing.RetreatEventPayload payload = 1;
+  websocket.payload.playing.RetreatPayload payload = 1;
   // 逃げるユーザーのID
   string userId = 2;
 }
@@ -127,17 +127,17 @@ message RetreatEventToRecipient {
 // エネルギー付与イベント
 ////
 message SupplyEnergyEventToServer {
-  websocket.payload.playing.SupplyEnergyEventPayload payload = 1;
+  websocket.payload.playing.SupplyEnergyPayload payload = 1;
 }
 
 message SupplyEnergyEventToActor {
-  websocket.payload.playing.SupplyEnergyEventPayload payload = 1;
+  websocket.payload.playing.SupplyEnergyPayload payload = 1;
   // エネルギーを供給するユーザーのID
   string userId = 2;
 }
 
 message SupplyEnergyEventToRecipient {
-  websocket.payload.playing.SupplyEnergyEventPayload payload = 1;
+  websocket.payload.playing.SupplyEnergyPayload payload = 1;
   // エネルギーを供給するユーザーのID
   string userId = 2;
 }
@@ -146,17 +146,17 @@ message SupplyEnergyEventToRecipient {
 // 降参イベント
 ////
 message SurrenderEventToServer {
-  websocket.payload.playing.SurrenderEventPayload payload = 1;
+  websocket.payload.playing.SurrenderPayload payload = 1;
 }
 
 message SurrenderEventToActor {
-  websocket.payload.playing.SurrenderEventPayload payload = 1;
+  websocket.payload.playing.SurrenderPayload payload = 1;
   // 降参するユーザーのID
   string userId = 2;
 }
 
 message SurrenderEventToRecipient {
-  websocket.payload.playing.SurrenderEventPayload payload = 1;
+  websocket.payload.playing.SurrenderPayload payload = 1;
   // 降参するユーザーのID
   string userId = 2;
 }
@@ -165,17 +165,17 @@ message SurrenderEventToRecipient {
 // ラムモン特性イベント
 ////
 message AbilityEventToServer {
-  websocket.payload.playing.AbilityEventPayload payload = 1;
+  websocket.payload.playing.AbilityPayload payload = 1;
 }
 
 message AbilityEventToActor {
-  websocket.payload.playing.AbilityEventPayload payload = 1;
+  websocket.payload.playing.AbilityPayload payload = 1;
   // 特性を発動するユーザーのID
   string userId = 2;
 }
 
 message AbilityEventToRecipient {
-  websocket.payload.playing.AbilityEventPayload payload = 1;
+  websocket.payload.playing.AbilityPayload payload = 1;
   // 特性を発動するユーザーのID
   string userId = 2;
 }
@@ -184,13 +184,13 @@ message AbilityEventToRecipient {
 // ドローイベント
 ////
 message DrawEventToActor {
-  websocket.payload.playing.DrawCardEventIndividualPayload payload = 1;
+  websocket.payload.playing.DrawCardIndividualPayload payload = 1;
   // ドローするユーザーのID
   string userId = 2;
 }
 
 message DrawEventToRecipient {
-  websocket.payload.playing.DrawCardEventPayload payload = 1;
+  websocket.payload.playing.DrawCardPayload payload = 1;
   // ドローするユーザーのID
   string userId = 2;
 }
@@ -199,7 +199,7 @@ message DrawEventToRecipient {
 // 実行可能な行動確認イベント
 ////
 message ConfirmActionEventToActor {
-  websocket.payload.playing.ConfirmActionEventPayload payload = 1;
+  websocket.payload.playing.ConfirmActionPayload payload = 1;
 }
 
 ////
@@ -229,6 +229,11 @@ message ConfirmActionEventToActor {
 ////
 // コイントスイベント
 ////
+message CoinTossEventToServer {}
+
+message CoinTossEventToActor {
+  websocket.payload.playing.CoinTossPayload payload = 1;
+}
 
 ////
 // コイントス結果通知イベント

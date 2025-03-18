@@ -10,6 +10,27 @@ tags:
 - description: ガチャに関するAPI
   name: gacha
 paths:
+  /users/{userId}:
+    get:
+      description: Get user by user ID
+      operationId: getUser
+      parameters:
+      - description: ID of user to return
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+          description: successful operation
+      summary: Get user by user ID
+      tags:
+      - user
   /gachas:
     get:
       description: ガチャ一覧を取得する
@@ -250,6 +271,21 @@ paths:
       summary: health check
 components:
   schemas:
+    user:
+      example:
+        imageUrl: imageUrl
+        name: name
+      properties:
+        name:
+          description: ユーザー名
+          type: string
+        imageUrl:
+          description: 画像URL
+          type: string
+      required:
+      - imageUrl
+      - name
+      type: object
     gacha:
       example:
         imageUrl: imageUrl

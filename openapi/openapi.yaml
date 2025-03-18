@@ -11,6 +11,8 @@ tags:
     description: ガチャに関するAPI
 
 paths:
+  /users/{userId}:
+    $ref: "./paths/user.yaml#/getUser"
   /gachas:
     $ref: "./paths/gacha.yaml#/getGachaList"
   /gachas/power:

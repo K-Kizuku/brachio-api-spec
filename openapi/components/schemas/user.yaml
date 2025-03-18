@@ -1,0 +1,14 @@
+components:
+  schemas:
+    user:
+      type: object
+      required:
+        - name
+        - imageUrl
+      properties:
+        name:
+          type: string
+          description: ユーザー名
+        imageUrl:
+          type: string
+          description: 画像URL

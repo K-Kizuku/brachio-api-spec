@@ -5,6 +5,7 @@ package websocket.payload.playing;
 import "messages/card.proto";
 import "messages/ability.proto";
 import "messages/common.proto";
+import "google/protobuf/empty.proto";
 
 message AttackMonsterPayload {
   // 攻撃者のモンスター
@@ -102,3 +103,55 @@ message Action {
 }
 
 message CoinTossPayload { repeated bool results = 1; }
+
+message CoinTossEmptyPayload { google.protobuf.Empty empty = 1; }
+
+message StartGamePayload { google.protobuf.Empty empty = 1; }
+
+message InitialPlacementCompletePayload { google.protobuf.Empty empty = 1; }
+
+message TurnStartPayload {
+  // ターンプレイヤーのID
+  string userId = 1;
+  // 発動するイベントの原因となるカード
+  repeated messages.card.Card cards = 2;
+  // イベントの原因となる特性
+  repeated messages.ability.Ability abilities = 3;
+}
+
+message TurnEndPayload {
+  // ターンプレイヤーのID
+  string userId = 1;
+  // 発動するイベントの原因となるカード
+  repeated messages.card.Card cards = 2;
+  // イベントの原因となる特性
+  repeated messages.ability.Ability abilities = 3;
+}
+
+message ConfirmEnergyResponsePayload {
+  // エネルギーを供給するモンスター
+  messages.card.Card card = 1;
+  // 供給するエネルギー
+  repeated messages.common.Element energies = 2;
+}
+
+message ConfirmEnergyRequestPayload {
+  // エネルギーを供給するモンスター
+  messages.card.Card card = 1;
+  // 必要なエネルギー
+  repeated messages.common.Element energies = 2;
+}
+
+message ConfirmTargetResponsePayload {
+  // 対象となるカード
+  messages.card.Card card = 1;
+  // ターゲットとなるカード
+  repeated messages.card.Card targets = 2;
+}
+
+message ConfirmTargetRequestPayload {
+  // 対象となるカード
+  messages.card.Card card = 1;
+  // 必要なターゲット数
+  int32 count = 2;
+}

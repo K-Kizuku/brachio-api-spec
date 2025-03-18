@@ -183,6 +183,9 @@ message AbilityEventToRecipient {
 ////
 // ドローイベント
 ////
+message DrawEventToServer {
+  websocket.payload.playing.DrawCardPayload payload = 1;
+}
 message DrawEventToActor {
   websocket.payload.playing.DrawCardIndividualPayload payload = 1;
   // ドローするユーザーのID

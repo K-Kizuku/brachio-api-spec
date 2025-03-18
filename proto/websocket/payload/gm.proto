@@ -19,7 +19,7 @@ message EnterRoomEventPayload {
 
 // マッチング完了イベント
 message MatchingCompleteEventPayload {
-  repeated messages.user.User users = 1;
+  string opponentId = 1;
   string battleId = 2;
 }
 

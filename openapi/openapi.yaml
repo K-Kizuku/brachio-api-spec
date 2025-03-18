@@ -1,4 +1,4 @@
-openapi: '3.0.4'
+openapi: "3.0.4"
 info:
   version: 0.0.1
   title: Hackz Hackathon Brachio CUP API Spec
@@ -12,26 +12,29 @@ tags:
 
 paths:
   /gachas:
-    $ref: './paths/gacha.yaml#/getGachaList'
+    $ref: "./paths/gacha.yaml#/getGachaList"
   /gachas/power:
-    $ref: './paths/gacha.yaml#/getGachaPower'
+    $ref: "./paths/gacha.yaml#/getGachaPower"
   /gachas/{gachaId}:
-    $ref: './paths/gacha.yaml#/drawGacha'
+    $ref: "./paths/gacha.yaml#/drawGacha"
   /items:
-    $ref: './paths/item.yaml#/getMyItems'
+    $ref: "./paths/item.yaml#/getMyItems"
   /decks:
-    $ref: './paths/deck.yaml#/decks'
+    $ref: "./paths/deck.yaml#/decks"
   /decks/{deckId}:
-    $ref: './paths/deck.yaml#/deckWithId'
+    $ref: "./paths/deck.yaml#/deckWithId"
   /cards:
-    $ref: './paths/card.yaml#/getCards'
+    $ref: "./paths/card.yaml#/getCards"
+  /presents:
+    $ref: "./paths/present.yaml#/getMyPresents"
+  /presents/{presentId}:
+    $ref: "./paths/present.yaml#/receivePresent"
   /ws:
-    $ref: './paths/ws.yaml#/ws'
+    $ref: "./paths/ws.yaml#/ws"
   /:
     get:
       summary: health check
       operationId: healthCheck
       responses:
-        '200':
+        "200":
           description: OK
-

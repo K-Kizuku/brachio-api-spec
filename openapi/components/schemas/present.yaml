@@ -1,0 +1,21 @@
+components:
+  schemas:
+    present:
+      type: object
+      required:
+        - id
+        - message
+        - itemCount
+        - item
+      properties:
+        id:
+          type: string
+          description: プレゼントID
+        message:
+          type: string
+          description: メッセージ
+        itemCount:
+          type: integer
+          description: アイテム数
+        item:
+          $ref: "./item.yaml#/components/schemas/itemBase"

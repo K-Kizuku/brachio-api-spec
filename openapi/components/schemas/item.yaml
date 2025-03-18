@@ -6,6 +6,7 @@ components:
         - id
         - name
         - count
+        - imageUrl
       properties:
         id:
           type: string
@@ -16,3 +17,6 @@ components:
         count:
           type: integer
           description: 所持数
+        imageUrl:
+          type: string
+          description: 画像URL

@@ -341,6 +341,7 @@ components:
       type: object
     item:
       example:
+        imageUrl: imageUrl
         name: name
         count: 0
         id: id
@@ -354,9 +355,13 @@ components:
         count:
           description: 所持数
           type: integer
+        imageUrl:
+          description: 画像URL
+          type: string
       required:
       - count
       - id
+      - imageUrl
       - name
       type: object
     deckBaseWithId:

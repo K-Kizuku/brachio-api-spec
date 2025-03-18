@@ -302,3 +302,10 @@ message DrawEffectEventToActor {
 message DrawEffectEventToRecipient {
   websocket.payload.playing.DrawEffectPayloadToRecipient payload = 1;
 }
+
+////
+// バトル場が空いた時にバトル場に置くカードを選択するイベント(クライアントへの通知はDrawEffectEventを用いる)
+////
+message SelectBattlePositionEventToServer {
+  websocket.payload.playing.SelectBattlePositionPayload payload = 1;
+}

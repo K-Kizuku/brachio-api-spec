@@ -175,3 +175,5 @@ message DrawEffectPayloadToRecipient {
 message DrawEffectPayloadToActor {
   repeated messages.effect.EffectWithSecret effects = 1;
 }
+
+message SelectBattlePositionPayload { int32 position = 1; }

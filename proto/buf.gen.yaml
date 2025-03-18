@@ -24,5 +24,5 @@ plugins:
     out: ../generated/go
     opt:
       - paths=source_relative
-  - remote: buf.build/bufbuild/es:v1.10.0
-    out: ../generated/ts
+  - remote: buf.build/bufbuild/es:v2.0.0
+    out: ../../src/generated

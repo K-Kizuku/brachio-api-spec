@@ -3,28 +3,59 @@ syntax = "proto3";
 
 package websocket.event.gm;
 
+import "websocket/payload/gm.proto";
+
 ////
 // デッキデータ交換イベント(c→sは必要だが、c同士は必要ないかも)
 ////
 message ExchangeDeckEventToServer {
-  // 交換するデッキのユーザーID
-  string userId = 1;
-  // 交換するデッキのデータ
-  repeated string deck = 2;
+  websocket.payload.gm.ExchangeDeckEventPayload payload = 1;
+}
+
+message ExchangeDeckEventToActor {
+  websocket.payload.gm.ExchangeDeckEventPayload payload = 1;
+  // 交換するユーザーのID
+  string userId = 2;
+}
+
+message ExchangeDeckEventToRecipient {
+  websocket.payload.gm.ExchangeDeckEventPayload payload = 1;
+  // 交換するユーザーのID
+  string userId = 2;
 }
 
 ////
 // ルーム作成イベント
 ////
+message CreateRoomEventToServer {
+  websocket.payload.gm.CreateRoomEventPayload payload = 1;
+}
 
 ////
 // ルーム入室イベント
 ////
+message EnterRoomEventToServer {
+  websocket.payload.gm.EnterRoomEventPayload payload = 1;
+}
 
 ////
 // マッチング完了イベント
 ////
+message MatchingCompleteEventToActor {
+  websocket.payload.gm.MatchingCompleteEventPayload payload = 1;
+}
+
+message MatchingCompleteEventToRecipient {
+  websocket.payload.gm.MatchingCompleteEventPayload payload = 1;
+}
 
 ////
 // 先攻後攻決定イベント
 ////
+message DecideOrderEventToActor {
+  websocket.payload.gm.DecideOrderEventPayload payload = 1;
+}
+
+message DecideOrderEventToRecipient {
+  websocket.payload.gm.DecideOrderEventPayload payload = 1;
+}

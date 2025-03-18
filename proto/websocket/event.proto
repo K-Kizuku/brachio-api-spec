@@ -3,6 +3,7 @@ syntax = "proto3";
 package event;
 
 import "google/protobuf/timestamp.proto";
+import "websocket/event/playing.proto";
 
 message EventMetadata {
   string id = 1;
@@ -13,5 +14,81 @@ message EventMetadata {
 
 message EventEnvelope {
   EventMetadata metadata = 1;
-  oneof event {}
+  oneof event {
+    websocket.event.playing.AttackMonsterEventToServer
+        attack_monster_event_to_server = 2;
+    websocket.event.playing.AttackMonsterEventToActor
+        attack_monster_event_to_actor = 3;
+    websocket.event.playing.AttackMonsterEventToRecipient
+        attack_monster_event_to_recipient = 4;
+    websocket.event.playing.SummonMonsterEventToServer
+        summon_monster_event_to_server = 5;
+    websocket.event.playing.SummonMonsterEventToActor
+        summon_monster_event_to_actor = 6;
+    websocket.event.playing.SummonMonsterEventToRecipient
+        summon_monster_event_to_recipient = 7;
+    websocket.event.playing.EvolutionMonsterEventToServer
+        evolution_monster_event_to_server = 8;
+    websocket.event.playing.EvolutionMonsterEventToActor
+        evolution_monster_event_to_actor = 9;
+    websocket.event.playing.EvolutionMonsterEventToRecipient
+        evolution_monster_event_to_recipient = 10;
+    websocket.event.playing.TakeSupportEventToServer
+        take_support_event_to_server = 11;
+    websocket.event.playing.TakeSupportEventToActor
+        take_support_event_to_actor = 12;
+    websocket.event.playing.TakeSupportEventToRecipient
+        take_support_event_to_recipient = 13;
+    websocket.event.playing.TakeGoodsEventToServer take_goods_event_to_server =
+        14;
+    websocket.event.playing.TakeGoodsEventToActor take_goods_event_to_actor =
+        15;
+    websocket.event.playing.TakeGoodsEventToRecipient
+        take_goods_event_to_recipient = 16;
+    websocket.event.playing.RetreatEventToServer retreat_event_to_server = 17;
+    websocket.event.playing.RetreatEventToActor retreat_event_to_actor = 18;
+    websocket.event.playing.RetreatEventToRecipient retreat_event_to_recipient =
+        19;
+    websocket.event.playing.SupplyEnergyEventToServer
+        supply_energy_event_to_server = 20;
+    websocket.event.playing.SupplyEnergyEventToActor
+        supply_energy_event_to_actor = 21;
+    websocket.event.playing.SupplyEnergyEventToRecipient
+        supply_energy_event_to_recipient = 22;
+    websocket.event.playing.SurrenderEventToServer surrender_event_to_server =
+        23;
+    websocket.event.playing.SurrenderEventToActor surrender_event_to_actor = 24;
+    websocket.event.playing.SurrenderEventToRecipient
+        surrender_event_to_recipient = 25;
+    websocket.event.playing.AbilityEventToServer ability_event_to_server = 26;
+    websocket.event.playing.AbilityEventToActor ability_event_to_actor = 27;
+    websocket.event.playing.AbilityEventToRecipient ability_event_to_recipient =
+        28;
+    websocket.event.playing.DrawEventToServer draw_event_to_server = 29;
+    websocket.event.playing.DrawEventToActor draw_event_to_actor = 30;
+    websocket.event.playing.DrawEventToRecipient draw_event_to_recipient = 31;
+    websocket.event.playing.ConfirmActionEventToActor
+        confirm_action_event_to_actor = 32;
+    websocket.event.playing.InitialPlacementCompleteEventToServer
+        initial_placement_complete_event_to_server = 33;
+    websocket.event.playing.StartGameEventToClients
+        start_game_event_to_clients = 34;
+    websocket.event.playing.TurnStartEventToClients
+        turn_start_event_to_clients = 35;
+    websocket.event.playing.TurnEndEventToClients turn_end_event_to_clients =
+        36;
+    websocket.event.playing.CoinTossEventToServer coin_toss_event_to_server =
+        37;
+    websocket.event.playing.CoinTossEventToActor coin_toss_event_to_actor = 38;
+    websocket.event.playing.CoinTossResultEventToRecipient
+        coin_toss_result_event_to_recipient = 39;
+    websocket.event.playing.ConfirmEnergyEventToServer
+        confirm_energy_event_to_server = 40;
+    websocket.event.playing.ConfirmEnergyEventToActor
+        confirm_energy_event_to_actor = 41;
+    websocket.event.playing.ConfirmTargetEventToServer
+        confirm_target_event_to_server = 42;
+    websocket.event.playing.ConfirmTargetEventToActor
+        confirm_target_event_to_actor = 43;
+  }
 }

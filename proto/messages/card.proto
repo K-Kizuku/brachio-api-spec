@@ -91,7 +91,7 @@ message MasterMonsterCard {
   // 逃げるコスト
   int32 retreat_cost = 7;
   // 進化元
-  string evolves_from = 8;
+  repeated string evolves_from = 8;
   // 進化先
   repeated string evolves_to = 9;
   // サブタイプ

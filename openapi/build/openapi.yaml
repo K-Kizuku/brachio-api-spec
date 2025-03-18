@@ -201,6 +201,39 @@ paths:
       summary: 取得済みカード一覧の取得
       tags:
       - card
+  /presents:
+    get:
+      description: プレゼント一覧を取得する
+      operationId: getMyPresents
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/present'
+                type: array
+          description: プレゼント一覧
+      summary: プレゼント一覧取得
+      tags:
+      - present
+  /presents/{presentId}:
+    post:
+      description: プレゼントを受け取る
+      operationId: receivePresent
+      parameters:
+      - description: プレゼントID
+        in: path
+        name: presentId
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          description: 受け取り成功
+      summary: プレゼント受け取り
+      tags:
+      - present
   /ws:
     get:
       operationId: ws
@@ -743,6 +776,33 @@ components:
         required:
         - text
         type: object
+    present:
+      example:
+        item:
+          imageUrl: imageUrl
+          name: name
+          id: id
+        id: id
+        message: message
+        itemCount: 0
+      properties:
+        id:
+          description: プレゼントID
+          type: string
+        message:
+          description: メッセージ
+          type: string
+        itemCount:
+          description: アイテム数
+          type: integer
+        item:
+          $ref: '#/components/schemas/itemBase'
+      required:
+      - id
+      - item
+      - itemCount
+      - message
+      type: object
     card:
       allOf:
       - $ref: '#/components/schemas/masterCard'
@@ -756,6 +816,26 @@ components:
         type: object
       example:
         id: id
+    itemBase:
+      example:
+        imageUrl: imageUrl
+        name: name
+        id: id
+      properties:
+        id:
+          description: アイテムID（アイテムごとに一意）
+          type: string
+        name:
+          description: アイテム名
+          type: string
+        imageUrl:
+          description: 画像URL
+          type: string
+      required:
+      - id
+      - imageUrl
+      - name
+      type: object
     createNewDeck_201_response:
       example:
         id: id

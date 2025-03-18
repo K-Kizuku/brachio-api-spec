@@ -1,5 +1,21 @@
 components:
   schemas:
+    itemBase:
+      type: object
+      required:
+        - id
+        - name
+        - imageUrl
+      properties:
+        id:
+          type: string
+          description: アイテムID（アイテムごとに一意）
+        name:
+          type: string
+          description: アイテム名
+        imageUrl:
+          type: string
+          description: 画像URL
     item:
       type: object
       required:

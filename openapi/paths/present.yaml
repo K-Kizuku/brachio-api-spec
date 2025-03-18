@@ -1,0 +1,33 @@
+getMyPresents:
+  get:
+    tags:
+      - present
+    summary: プレゼント一覧取得
+    description: プレゼント一覧を取得する
+    operationId: getMyPresents
+    responses:
+      "200":
+        description: プレゼント一覧
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../components/schemas/present.yaml#/components/schemas/present"
+receivePresent:
+  post:
+    tags:
+      - present
+    summary: プレゼント受け取り
+    description: プレゼントを受け取る
+    operationId: receivePresent
+    parameters:
+      - in: path
+        name: presentId
+        required: true
+        schema:
+          type: string
+        description: プレゼントID
+    responses:
+      "204":
+        description: 受け取り成功

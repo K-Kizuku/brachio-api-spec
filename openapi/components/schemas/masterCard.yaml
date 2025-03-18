@@ -71,13 +71,27 @@ components:
               description: 逃げるコスト
               example: 1
             evolvesFrom:
-              type: string
+              type: array
               description: 進化元
-              example: フシギダネ
+              items:
+                type: string
+                example: "kizuku"
             evolvesTo:
-              type: string
+              type: array
               description: 進化先
-              example: フシギバナ
+              items:
+                type: string
+                example: "kizuku"
+            isEx:
+              type: boolean
+              description: EXカードかどうか
+              example: false
+            subType:
+              type: string
+              enum:
+                - basic
+                - stage1
+                - stage2
     masterSupporterCard:
       allOf:
         - $ref: "#/components/schemas/masterCardBase"

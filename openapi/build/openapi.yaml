@@ -259,8 +259,13 @@ components:
           masterCardId: masterCardId
           cardType: monster
           hp: 60
-          evolvesTo: フシギバナ
-          evolvesFrom: フシギダネ
+          evolvesTo:
+          - kizuku
+          - kizuku
+          isEx: false
+          evolvesFrom:
+          - kizuku
+          - kizuku
           expansion: expansion
           skills:
           - damage: 6
@@ -280,6 +285,7 @@ components:
           weakness: null
           imageUrl: imageUrl
           name: name
+          subType: basic
           ability:
             name: name
             text: text
@@ -289,8 +295,13 @@ components:
           masterCardId: masterCardId
           cardType: monster
           hp: 60
-          evolvesTo: フシギバナ
-          evolvesFrom: フシギダネ
+          evolvesTo:
+          - kizuku
+          - kizuku
+          isEx: false
+          evolvesFrom:
+          - kizuku
+          - kizuku
           expansion: expansion
           skills:
           - damage: 6
@@ -310,6 +321,7 @@ components:
           weakness: null
           imageUrl: imageUrl
           name: name
+          subType: basic
           ability:
             name: name
             text: text
@@ -462,8 +474,13 @@ components:
           masterCardId: masterCardId
           cardType: monster
           hp: 60
-          evolvesTo: フシギバナ
-          evolvesFrom: フシギダネ
+          evolvesTo:
+          - kizuku
+          - kizuku
+          isEx: false
+          evolvesFrom:
+          - kizuku
+          - kizuku
           expansion: expansion
           skills:
           - damage: 6
@@ -483,6 +500,7 @@ components:
           weakness: null
           imageUrl: imageUrl
           name: name
+          subType: basic
           ability:
             name: name
             text: text
@@ -529,11 +547,25 @@ components:
             type: integer
           evolvesFrom:
             description: 進化元
-            example: フシギダネ
-            type: string
+            items:
+              example: kizuku
+              type: string
+            type: array
           evolvesTo:
             description: 進化先
-            example: フシギバナ
+            items:
+              example: kizuku
+              type: string
+            type: array
+          isEx:
+            description: EXカードかどうか
+            example: false
+            type: boolean
+          subType:
+            enum:
+            - basic
+            - stage1
+            - stage2
             type: string
         required:
         - element
@@ -547,8 +579,13 @@ components:
         masterCardId: masterCardId
         cardType: monster
         hp: 60
-        evolvesTo: フシギバナ
-        evolvesFrom: フシギダネ
+        evolvesTo:
+        - kizuku
+        - kizuku
+        isEx: false
+        evolvesFrom:
+        - kizuku
+        - kizuku
         expansion: expansion
         skills:
         - damage: 6
@@ -568,6 +605,7 @@ components:
         weakness: null
         imageUrl: imageUrl
         name: name
+        subType: basic
         ability:
           name: name
           text: text

@@ -12,6 +12,8 @@ message AttackMonsterPayload {
   messages.card.Card attacker = 1;
   // 技のインデックス
   int32 skill = 2;
+
+  repeated int32 targetsDamages = 4;
 }
 
 message SummonMonsterPayload {
@@ -49,11 +51,11 @@ message RetreatPayload {
   int32 position = 2;
 }
 
+message SupplyEnergys { repeated messages.common.Element energies = 1; }
+
 message SupplyEnergyPayload {
-  // エネルギーを供給するモンスター
-  messages.card.Card card = 1;
-  // 供給するエネルギー
-  repeated messages.common.Element energies = 2;
+  // 供給するエネルギー(ポジションベース length4)
+  repeated SupplyEnergys supplys = 1;
 }
 
 message SurrenderPayload {

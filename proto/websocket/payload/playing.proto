@@ -9,11 +9,11 @@ import "google/protobuf/empty.proto";
 
 message AttackMonsterPayload {
   // 攻撃者のモンスター
-  messages.card.Card attacker = 1;
+  int32 attacker_position = 1;
   // 技のインデックス
   int32 skill = 2;
 
-  repeated int32 targetsDamages = 4;
+  repeated int32 targetsDamages = 3;
 }
 
 message SummonMonsterPayload {
@@ -34,14 +34,14 @@ message TakeSupportPayload {
   // サポートカード
   messages.card.Card card = 1;
   // サポートの対象のカードのID
-  messages.card.Card target = 2;
+  repeated int32 positions = 2;
 }
 
 message TakeGoodsPayload {
   // アイテム
   messages.card.Card card = 1;
   // グッズ効果の対象のカード
-  repeated messages.card.Card targets = 2;
+  repeated int32 positions = 2;
 }
 
 message RetreatPayload {
@@ -65,7 +65,7 @@ message SurrenderPayload {
 
 message AbilityPayload {
   // 発動するラムモン
-  messages.card.Card card = 1;
+  int32 position = 1;
   // 発動する特性
   messages.ability.Ability ability = 2;
 }
@@ -101,7 +101,7 @@ enum ActionType {
 message Action {
   ActionType type = 1;
   // 行動するラムモンorアイテム
-  optional messages.card.Card target = 2;
+  optional int32 position = 2;
 }
 
 message CoinTossPayload { repeated bool results = 1; }
@@ -146,14 +146,14 @@ message ConfirmEnergyRequestPayload {
 
 message ConfirmTargetResponsePayload {
   // 対象となるカード
-  messages.card.Card card = 1;
+  int32 position = 1;
   // ターゲットとなるカード
-  repeated messages.card.Card targets = 2;
+  repeated int32 target_positions = 2;
 }
 
 message ConfirmTargetRequestPayload {
   // 対象となるカード
-  messages.card.Card card = 1;
+  int32 position = 1;
   // 必要なターゲット数
   int32 count = 2;
 }

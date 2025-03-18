@@ -2,21 +2,12 @@ syntax = "proto3";
 
 package websocket.payload.gm;
 
-import "messages/card.proto";
 import "messages/user.proto";
-
-// デッキデータ交換イベント(c→sは必要だが、c同士は必要ないかも)
-message ExchangeDeckEventPayload {
-  // 交換するデッキのユーザーID
-  string userId = 1;
-  // 交換するデッキのデータ
-  repeated messages.card.Card deck = 2;
-}
 
 // ルーム作成イベント
 message CreateRoomEventPayload {
   // ルームの合言葉
-  string password = 2;
+  string password = 1;
 }
 
 // ルーム入室イベント

@@ -6,25 +6,6 @@ package websocket.event.gm;
 import "websocket/payload/gm.proto";
 
 ////
-// デッキデータ交換イベント(c→sは必要だが、c同士は必要ないかも)
-////
-message ExchangeDeckEventToServer {
-  websocket.payload.gm.ExchangeDeckEventPayload payload = 1;
-}
-
-message ExchangeDeckEventToActor {
-  websocket.payload.gm.ExchangeDeckEventPayload payload = 1;
-  // 交換するユーザーのID
-  string userId = 2;
-}
-
-message ExchangeDeckEventToRecipient {
-  websocket.payload.gm.ExchangeDeckEventPayload payload = 1;
-  // 交換するユーザーのID
-  string userId = 2;
-}
-
-////
 // ルーム入室イベント
 ////
 message EnterRoomEventToServer {

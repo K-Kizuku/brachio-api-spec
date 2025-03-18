@@ -93,12 +93,6 @@ message EventEnvelope {
         confirm_target_event_to_actor = 43;
     websocket.event.playing.NextEnergyEventToActor next_energy_event_to_actor =
         44;
-    websocket.event.gm.ExchangeDeckEventToServer exchange_deck_event_to_server =
-        45;
-    websocket.event.gm.ExchangeDeckEventToActor exchange_deck_event_to_actor =
-        46;
-    websocket.event.gm.ExchangeDeckEventToRecipient
-        exchange_deck_event_to_recipient = 47;
     websocket.event.gm.EnterRoomEventToServer enter_room_event_to_server = 49;
     websocket.event.gm.MatchingCompleteEventToActor
         matching_complete_event_to_actor = 50;

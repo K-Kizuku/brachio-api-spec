@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package messages.pack_power;
+
+message PackPower {
+  // 次のパックが貯まるまでの秒数
+  int32 next = 1;
+  // 現在溜まっているパックの数
+  int32 charged = 2;
+}

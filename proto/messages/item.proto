@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package messages.item;
+
+// アイテム
+message Item {
+  // アイテムID（各アイテムごとに一意）
+  string id = 1;
+  // アイテム名
+  string name = 2;
+  // 所持数
+  int32 count = 3;
+}

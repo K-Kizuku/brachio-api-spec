@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package messages.common;
+
+// Element（デッキの色やカードの属性）
+enum Element {
+  ELEMENT_UNKNOWN = 0;
+  MONEY = 1;
+  KNOWLEDGE = 2;
+  MUSCLE = 3;
+  ALCHOHOL = 4;
+  POPULARITY = 5;
+  NULL = 6;
+}
+
+// マスターカードのタイプ
+enum MasterCardType {
+  MASTER_CARD_TYPE_UNSPECIFIED = 0;
+  MONSTER = 1;
+  SUPPORTER = 2;
+  GOODS = 3;
+}
+
+// ダメージオプション（x または +）
+enum DamageOption {
+  DAMAGE_OPTION_UNSPECIFIED = 0;
+  X = 1;
+  PLUS = 2;
+}

@@ -1,0 +1,129 @@
+syntax = "proto3";
+
+package messages.card;
+
+import "messages/skill.proto";
+import "messages/ability.proto";
+import "messages/common.proto";
+
+// message MonsterCard {
+//   // 共通のカード基本情報
+//   string id = 1;                 // 全ユーザーで一意に定まるID
+//   string name = 2;               // カード名
+//   int32 rarity = 3;              // レアリティ
+//   int32 card_number = 4;         // カードナンバー
+//   string expansion = 5;          // 拡張パック名
+//   common.CardType card_type = 6; // カードタイプ
+//   string image_url = 7;          // カード画像URL
+//   // モンスターカード固有の情報
+//   common.SubType sub_type = 8; // 進化段階（たね, 1進化, 2進化）
+//   common.Element type = 9;     // 属性
+//   int32 hp = 10;               // HP
+//   repeated skill.Skill skills = 11; // ワザ
+//   common.Element weekness = 12;     // 弱点（属性）
+//   int32 retreat_cost = 13;          // にげるコスト
+// }
+
+// message SupporterCard {
+//   // 効果
+//   string effect = 1;
+//   // 以下、共通のカード情報
+//   string id = 2;                 // 全ユーザーで一意に定まるID
+//   string name = 3;               // カード名
+//   int32 rarity = 4;              // レアリティ
+//   int32 card_number = 5;         // カードナンバー
+//   string expansion = 6;          // 拡張パック名
+//   common.CardType card_type = 7; // カードタイプ
+//   string image_url = 8;          // カード画像URL
+// }
+
+// message GoodsCard {
+//   // 効果
+//   string effect = 1;
+//   // 以下、共通のカード情報
+//   string id = 2;                 // 全ユーザーで一意に定まるID
+//   string name = 3;               // カード名
+//   int32 rarity = 4;              // レアリティ
+//   int32 card_number = 5;         // カードナンバー
+//   string expansion = 6;          // 拡張パック名
+//   common.CardType card_type = 7; // カードタイプ
+//   string image_url = 8;          // カード画像URL
+// }
+message Card {
+  // masterCard は oneof でモンスター/サポーター/グッズのいずれか
+  MasterCard master_card = 1;
+  // 個別のカードID
+  string id = 2;
+}
+
+// マスターカードと枚数の組み合わせ
+message MasterCardWithCount {
+  // マスターカード情報
+  MasterCard master_card = 1;
+  // カード枚数
+  int32 count = 2;
+}
+
+// マスターカード（oneof で各種カードに分岐）
+message MasterCard {
+  oneof card_variant {
+    MasterMonsterCard master_monster_card = 1;
+    MasterSupporterCard master_supporter_card = 2;
+    MasterGoodsCard master_goods_card = 3;
+  }
+}
+
+// モンスターカード（マスターカードの一種）
+// masterMonsterCard は masterCardBase の情報に加え、固有のプロパティを持つ
+message MasterMonsterCard {
+  // 共通プロパティ
+  MasterCardBase base = 1;
+  // HP
+  int32 hp = 2;
+  // 属性（element は必須）
+  common.Element element = 3;
+  // 弱点
+  common.Element weakness = 4;
+  // ワザのリスト
+  repeated skill.Skill skills = 5;
+  // 特性
+  ability.Ability ability = 6;
+  // 逃げるコスト
+  int32 retreat_cost = 7;
+  // 進化元
+  string evolves_from = 8;
+  // 進化先
+  string evolves_to = 9;
+}
+
+// サポーターカード（マスターカードの一種）
+// masterSupporterCard は masterCardBase に加えてテキスト情報を持つ
+message MasterSupporterCard {
+  MasterCardBase base = 1;
+  // 説明文
+  string text = 2;
+}
+
+// グッズカード（マスターカードの一種）
+// masterGoodsCard は masterCardBase に加えてテキスト情報を持つ
+message MasterGoodsCard {
+  MasterCardBase base = 1;
+  // 説明文
+  string text = 2;
+}
+
+// 全カード共通のプロパティ
+message MasterCardBase {
+  // カードID（readOnly）
+  string master_card_id = 1;
+  // カード名
+  string name = 2;
+  // カードタイプ
+  common.MasterCardType card_type = 3;
+  // レアリティ
+  int32 rarity = 4;
+  // カード画像URL
+  string image_url = 5;
+  // カードセット名
+  string expansion = 6;
+}

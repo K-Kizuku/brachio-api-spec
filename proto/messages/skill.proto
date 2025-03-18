@@ -1,0 +1,21 @@
+
+
+syntax = "proto3";
+
+package messages.skill;
+
+import "messages/common.proto";
+
+// ワザ
+message Skill {
+  // ワザ名
+  string name = 1;
+  // 説明文
+  string text = 2;
+  // ダメージ
+  int32 damage = 3;
+  // ダメージオプション（"x" または "+"）
+  common.DamageOption damage_option = 4;
+  // コスト（Element の配列）
+  repeated common.Element cost = 5;
+}

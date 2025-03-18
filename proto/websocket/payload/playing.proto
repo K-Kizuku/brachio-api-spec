@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+package websocket.payload.playing;
+
+import "messages/card.proto";
+import "messages/ability.proto";
+import "messages/common.proto";
+
+message AttackMonsterPayload {
+  // 攻撃者のモンスター
+  messages.card.Card attacker = 1;
+  // 技のインデックス
+  int32 skill = 2;
+}
+
+message SummonMonsterPayload {
+  // 召喚するモンスター
+  messages.card.Card card = 1;
+  // 召喚する場所
+  int32 position = 2;
+}
+
+message EvolutionMonsterPayload {
+  // 進化するモンスター
+  messages.card.Card card = 1;
+  // 進化する場所
+  int32 position = 2;
+}
+
+message TakeSupportPayload {
+  // サポートカード
+  messages.card.Card card = 1;
+  // サポートの対象のカードのID
+  messages.card.Card target = 2;
+}
+
+message TakeGoodsPayload {
+  // アイテム
+  messages.card.Card card = 1;
+  // グッズ効果の対象のカード
+  repeated messages.card.Card targets = 2;
+}
+
+message RetreatPayload {
+  // 退却するモンスター
+  messages.card.Card card = 1;
+  // 逃げる場所
+  int32 position = 2;
+}
+
+message SupplyEnergyPayload {
+  // エネルギーを供給するモンスター
+  messages.card.Card card = 1;
+  // 供給するエネルギー
+  repeated messages.common.Element energies = 2;
+}
+
+message SurrenderPayload {
+  // 降参するユーザーのID
+  string userId = 1;
+}
+
+message AbilityPayload {
+  // 発動するラムモン
+  messages.card.Card card = 1;
+  // 発動する特性
+  messages.ability.Ability ability = 2;
+}
+
+message DrawCardPayload {
+  // 山札から引くカードの枚数
+  int32 count = 1;
+}
+
+message DrawCardIndividualPayload {
+  // 山札から引くカードの枚数
+  int32 count = 1;
+  // 山札から引くカード
+  repeated messages.card.Card cards = 2;
+}
+
+message ConfirmActionPayload { repeated Action actions = 1; }
+
+enum ActionType {
+  UNKNOWN = 0;
+  ATTACK_MONSTER = 1;
+  SUMMON_MONSTER = 2;
+  EVOLUTION_MONSTER = 3;
+  TAKE_SUPPORT = 4;
+  TAKE_GOODS = 5;
+  RETREAT = 6;
+  SUPPLY_ENERGY = 7;
+  SURRENDER = 8;
+  ABILITY = 9;
+  DRAW = 10;
+}
+
+message Action {
+  ActionType type = 1;
+  // 行動するラムモンorアイテム
+  optional messages.card.Card target = 2;
+}
+
+message CoinTossPayload { repeated bool results = 1; }

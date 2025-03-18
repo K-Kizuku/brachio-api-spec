@@ -1,0 +1,252 @@
+
+syntax = "proto3";
+
+package websocket.event.playing;
+
+import "websocket/payload/playing.proto";
+import "messages/side_effect.proto";
+
+////
+// ラムモン攻撃イベント
+////
+message AttackMonsterEventToServer {
+  websocket.payload.playing.AttackMonsterPayload payload = 1;
+  // 技の副作用に対する選択結果
+  repeated messages.side_effect.SideEffect sideEffect = 2;
+}
+
+// TODO:一旦保留
+message AttackMonsterEventToActor {
+  websocket.payload.playing.AttackMonsterPayload payload = 1;
+  // 攻撃者のユーザーID
+  string userId = 2;
+}
+
+message AttackMonsterEventToRecipient {
+  websocket.payload.playing.AttackMonsterPayload payload = 1;
+  // 攻撃者のユーザーID
+  string userId = 2;
+}
+
+////
+// ラムモン召喚イベント
+////
+message SummonMonsterEventToServer {
+  websocket.payload.playing.SummonMonsterPayload payload = 1;
+}
+
+message SummonMonsterEventToActor {
+  websocket.payload.playing.SummonMonsterPayload payload = 1;
+  // 召喚するユーザーのID
+  string userId = 2;
+}
+
+message SummonMonsterEventToRecipient {
+  websocket.payload.playing.SummonMonsterPayload payload = 1;
+  // 召喚するユーザーのID
+  string userId = 2;
+}
+
+////
+// ラムモン進化イベント
+////
+message EvolutionMonsterEventToServer {
+  websocket.payload.playing.EvolutionMonsterPayload payload = 1;
+}
+
+message EvolutionMonsterEventToActor {
+  websocket.payload.playing.EvolutionMonsterPayload payload = 1;
+  // 進化するユーザーのID
+  string userId = 2;
+}
+
+message EvolutionMonsterEventToRecipient {
+  websocket.payload.playing.EvolutionMonsterPayload payload = 1;
+  // 進化するユーザーのID
+  string userId = 2;
+}
+
+////
+// サポートカード使用イベント
+////
+message TakeSupportEventToServer {
+  websocket.payload.playing.TakeSupportPayload payload = 1;
+}
+
+message TakeSupportEventToActor {
+  websocket.payload.playing.TakeSupportPayload payload = 1;
+  // サポートするユーザーのID
+  string userId = 2;
+}
+
+message TakeSupportEventToRecipient {
+  websocket.payload.playing.TakeSupportPayload payload = 1;
+  // サポートするユーザーのID
+  string userId = 2;
+}
+
+////
+// グッズカード使用イベント
+////
+message TakeGoodsEventToServer {
+  websocket.payload.playing.TakeGoodsPayload payload = 1;
+}
+
+message TakeGoodsEventToActor {
+  websocket.payload.playing.TakeGoodsPayload payload = 1;
+  // アイテムを取得するユーザーのID
+  string userId = 2;
+}
+
+message TakeGoodsEventToRecipient {
+  websocket.payload.playing.TakeGoodsPayload payload = 1;
+  // アイテムを取得するユーザーのID
+  string userId = 2;
+}
+
+////
+// 逃げるイベント
+////
+message RetreatEventToServer {
+  websocket.payload.playing.RetreatPayload payload = 1;
+}
+
+message RetreatEventToActor {
+  websocket.payload.playing.RetreatPayload payload = 1;
+  // 逃げるユーザーのID
+  string userId = 2;
+}
+
+message RetreatEventToRecipient {
+  websocket.payload.playing.RetreatPayload payload = 1;
+  // 逃げるユーザーのID
+  string userId = 2;
+}
+
+////
+// エネルギー付与イベント
+////
+message SupplyEnergyEventToServer {
+  websocket.payload.playing.SupplyEnergyPayload payload = 1;
+}
+
+message SupplyEnergyEventToActor {
+  websocket.payload.playing.SupplyEnergyPayload payload = 1;
+  // エネルギーを供給するユーザーのID
+  string userId = 2;
+}
+
+message SupplyEnergyEventToRecipient {
+  websocket.payload.playing.SupplyEnergyPayload payload = 1;
+  // エネルギーを供給するユーザーのID
+  string userId = 2;
+}
+
+////
+// 降参イベント
+////
+message SurrenderEventToServer {
+  websocket.payload.playing.SurrenderPayload payload = 1;
+}
+
+message SurrenderEventToActor {
+  websocket.payload.playing.SurrenderPayload payload = 1;
+  // 降参するユーザーのID
+  string userId = 2;
+}
+
+message SurrenderEventToRecipient {
+  websocket.payload.playing.SurrenderPayload payload = 1;
+  // 降参するユーザーのID
+  string userId = 2;
+}
+
+////
+// ラムモン特性イベント
+////
+message AbilityEventToServer {
+  websocket.payload.playing.AbilityPayload payload = 1;
+}
+
+message AbilityEventToActor {
+  websocket.payload.playing.AbilityPayload payload = 1;
+  // 特性を発動するユーザーのID
+  string userId = 2;
+}
+
+message AbilityEventToRecipient {
+  websocket.payload.playing.AbilityPayload payload = 1;
+  // 特性を発動するユーザーのID
+  string userId = 2;
+}
+
+////
+// ドローイベント
+////
+message DrawEventToActor {
+  websocket.payload.playing.DrawCardIndividualPayload payload = 1;
+  // ドローするユーザーのID
+  string userId = 2;
+}
+
+message DrawEventToRecipient {
+  websocket.payload.playing.DrawCardPayload payload = 1;
+  // ドローするユーザーのID
+  string userId = 2;
+}
+
+////
+// 実行可能な行動確認イベント
+////
+message ConfirmActionEventToActor {
+  websocket.payload.playing.ConfirmActionPayload payload = 1;
+}
+
+////
+// 暗黙的な特性確認イベント(後回し)
+////
+
+////
+// 初期ラムポケ配置イベント(召喚イベントと同じ)
+////
+
+////
+// ゲーム開始通知イベント
+////
+
+////
+// 勝利条件確認イベント
+////
+
+////
+// ターン開始時イベント検知イベント
+////
+
+////
+// ターン終了時イベント検知イベント
+////
+
+////
+// コイントスイベント
+////
+message CoinTossEventToServer {}
+
+message CoinTossEventToActor {
+  websocket.payload.playing.CoinTossPayload payload = 1;
+}
+
+////
+// コイントス結果通知イベント
+////
+
+////
+// 対戦結果通知イベント
+////
+
+////
+// ワザを打つために必要なエネルギー確認イベント
+////
+
+////
+// ワザを打つために必要なターゲット指定イベント
+////

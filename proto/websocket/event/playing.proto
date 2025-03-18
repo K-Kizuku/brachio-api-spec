@@ -1,0 +1,90 @@
+
+syntax = "proto3";
+
+package websocket.event.playing;
+
+import "websocket/payload/playing.proto";
+import "messages/side_effect.proto";
+
+message AttackMonsterEventToServer {
+  websocket.payload.playing.AttackMonsterPayload payload = 1;
+  // 技の副作用に対する選択結果
+  repeated messages.side_effect.SideEffect sideEffect = 2;
+}
+
+// TODO:一旦保留
+message AttackMonsterEventToActor {
+  websocket.payload.playing.AttackMonsterPayload payload = 1;
+  // 攻撃者のユーザーID
+  string userId = 2;
+}
+
+message AttackMonsterEventToRecipient {
+  websocket.payload.playing.AttackMonsterPayload payload = 1;
+  // 攻撃者のユーザーID
+  string userId = 2;
+}
+
+message SummonMonsterEventToServer {
+  websocket.payload.playing.SummonMonsterPayload payload = 1;
+}
+
+message SummonMonsterEventToActor {
+  websocket.payload.playing.SummonMonsterPayload payload = 1;
+  // 召喚するユーザーのID
+  string userId = 2;
+}
+
+message SummonMonsterEventToRecipient {
+  websocket.payload.playing.SummonMonsterPayload payload = 1;
+  // 召喚するユーザーのID
+  string userId = 2;
+}
+
+message EvolutionMonsterEventToServer {
+  websocket.payload.playing.EvolutionMonsterPayload payload = 1;
+}
+
+message EvolutionMonsterEventToActor {
+  websocket.payload.playing.EvolutionMonsterPayload payload = 1;
+  // 進化するユーザーのID
+  string userId = 2;
+}
+
+message EvolutionMonsterEventToRecipient {
+  websocket.payload.playing.EvolutionMonsterPayload payload = 1;
+  // 進化するユーザーのID
+  string userId = 2;
+}
+
+message TakeSupportEventToServer {
+  websocket.payload.playing.TakeSupportPayload payload = 1;
+}
+
+message TakeSupportEventToActor {
+  websocket.payload.playing.TakeSupportPayload payload = 1;
+  // サポートするユーザーのID
+  string userId = 2;
+}
+
+message TakeSupportEventToRecipient {
+  websocket.payload.playing.TakeSupportPayload payload = 1;
+  // サポートするユーザーのID
+  string userId = 2;
+}
+
+message TakeGoodsEventToServer {
+  websocket.payload.playing.TakeGoodsPayload payload = 1;
+}
+
+message TakeGoodsEventToActor {
+  websocket.payload.playing.TakeGoodsPayload payload = 1;
+  // アイテムを取得するユーザーのID
+  string userId = 2;
+}
+
+message TakeGoodsEventToRecipient {
+  websocket.payload.playing.TakeGoodsPayload payload = 1;
+  // アイテムを取得するユーザーのID
+  string userId = 2;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package messages.card;
+
+message Ability {
+  // 特性名
+  string name = 1;
+  // 特性の説明
+  string description = 2;
+}

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package messages.main_effect;
+
+message MainEffect {
+  oneof main_effect {
+    // 反動ダメージ
+    Recoil recoil = 1;
+    // 回復
+    Heal heal = 2;
+    // 全体回復
+    HealAll heal_all = 3;
+    // 交換
+    Swap swap = 4;
+    // ドロー
+    Draw draw = 5;
+    // 手札からトラッシュ
+    DiscardFromHand discard_from_hand = 6;
+    // デッキからトラッシュ
+    DiscardFromDeck discard_from_deck = 7;
+  }
+}
+
+// 反動ダメージ
+message Recoil { int32 amount = 1; }
+
+// 回復
+message Heal {
+  int32 amount = 1;
+  string target = 2;
+}
+
+// 全体回復
+message HealAll { int32 amount = 1; }
+
+// 交換
+message Swap { string target = 1; }
+
+// ドロー
+message Draw { int32 amount = 1; }
+
+// 手札からトラッシュ
+message DiscardFromHand {
+  int32 amount = 1;
+  repeated string card_ids = 2;
+}
+
+// デッキからトラッシュ
+message DiscardFromDeck { int32 amount = 1; }

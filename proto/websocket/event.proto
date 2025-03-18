@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package event;
+
+import "google/protobuf/timestamp.proto";
+
+message EventMetadata {
+  string id = 1;
+  string sender_id = 2;
+  string battle_id = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+message EventEnvelope {
+  EventMetadata metadata = 1;
+  oneof event {}
+}

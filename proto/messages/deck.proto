@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package messages.deck;
+
+import "messages/common.proto";
+import "messages/card.proto";
+
+message Deck {
+  // デッキID
+  string id = 1;
+  // デッキ名
+  string name = 2;
+  // エネルギーの属性
+  repeated common.Element elements = 3;
+  // カードリスト
+  repeated card.Card cards = 4;
+}
+
+// デッキ作成リクエスト
+message CreateDeckRequest {
+  // デッキ名
+  string name = 1;
+  // エネルギーの属性
+  repeated common.Element elements = 2;
+  // カードIDリスト
+  repeated string card_ids = 3;
+}

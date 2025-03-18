@@ -211,8 +211,18 @@ message ConfirmActionEventToActor {
 ////
 
 ////
+// 初期ラムポケ配置完了イベント
+////
+message InitialPlacementCompleteEventToServer {
+  websocket.payload.playing.InitialPlacementCompletePayload payload = 1;
+}
+
+////
 // ゲーム開始通知イベント
 ////
+message StartGameEventToClients {
+  websocket.payload.playing.StartGamePayload payload = 1;
+}
 
 ////
 // 勝利条件確認イベント
@@ -221,15 +231,23 @@ message ConfirmActionEventToActor {
 ////
 // ターン開始時イベント検知イベント
 ////
+message TurnStartEventToClients {
+  websocket.payload.playing.TurnStartPayload payload = 1;
+}
 
 ////
 // ターン終了時イベント検知イベント
 ////
+message TurnEndEventToClients {
+  websocket.payload.playing.TurnEndPayload payload = 1;
+}
 
 ////
 // コイントスイベント
 ////
-message CoinTossEventToServer {}
+message CoinTossEventToServer {
+  websocket.payload.playing.CoinTossEmptyPayload payload = 1;
+}
 
 message CoinTossEventToActor {
   websocket.payload.playing.CoinTossPayload payload = 1;
@@ -238,15 +256,31 @@ message CoinTossEventToActor {
 ////
 // コイントス結果通知イベント
 ////
+message CoinTossResultEventToRecipient {
+  websocket.payload.playing.CoinTossPayload payload = 1;
+}
 
 ////
-// 対戦結果通知イベント
+// 対戦結果通知イベント(後回し)
 ////
 
 ////
 // ワザを打つために必要なエネルギー確認イベント
 ////
+message ConfirmEnergyEventToServer {
+  websocket.payload.playing.ConfirmEnergyResponsePayload payload = 1;
+}
+message ConfirmEnergyEventToActor {
+  websocket.payload.playing.ConfirmEnergyRequestPayload payload = 1;
+}
 
 ////
 // ワザを打つために必要なターゲット指定イベント
 ////
+message ConfirmTargetEventToServer {
+  websocket.payload.playing.ConfirmTargetResponsePayload payload = 1;
+}
+
+message ConfirmTargetEventToActor {
+  websocket.payload.playing.ConfirmTargetRequestPayload payload = 1;
+}

@@ -6,6 +6,9 @@ package websocket.event.playing;
 import "websocket/payload/playing.proto";
 import "messages/side_effect.proto";
 
+////
+// ラムモン攻撃イベント
+////
 message AttackMonsterEventToServer {
   websocket.payload.playing.AttackMonsterPayload payload = 1;
   // 技の副作用に対する選択結果
@@ -25,6 +28,9 @@ message AttackMonsterEventToRecipient {
   string userId = 2;
 }
 
+////
+// ラムモン召喚イベント
+////
 message SummonMonsterEventToServer {
   websocket.payload.playing.SummonMonsterPayload payload = 1;
 }
@@ -41,6 +47,9 @@ message SummonMonsterEventToRecipient {
   string userId = 2;
 }
 
+////
+// ラムモン進化イベント
+////
 message EvolutionMonsterEventToServer {
   websocket.payload.playing.EvolutionMonsterPayload payload = 1;
 }
@@ -57,6 +66,9 @@ message EvolutionMonsterEventToRecipient {
   string userId = 2;
 }
 
+////
+// サポートカード使用イベント
+////
 message TakeSupportEventToServer {
   websocket.payload.playing.TakeSupportPayload payload = 1;
 }
@@ -73,6 +85,9 @@ message TakeSupportEventToRecipient {
   string userId = 2;
 }
 
+////
+// グッズカード使用イベント
+////
 message TakeGoodsEventToServer {
   websocket.payload.playing.TakeGoodsPayload payload = 1;
 }
@@ -88,3 +103,59 @@ message TakeGoodsEventToRecipient {
   // アイテムを取得するユーザーのID
   string userId = 2;
 }
+
+////
+// 逃げるイベント
+////
+
+////
+// エネルギー付与イベント
+////
+
+////
+// 降参イベント
+////
+
+////
+// ラムモン特性イベント
+////
+
+////
+// ドローイベント
+////
+
+////
+// 実行可能な行動確認イベント
+////
+
+////
+// 暗黙的な特性確認イベント
+////
+
+////
+// 初期ラムポケ配置イベント
+////
+
+////
+// ゲーム開始通知イベント
+////
+
+////
+// 勝利条件確認イベント
+////
+
+////
+// ターン開始時イベント検知イベント
+////
+
+////
+// ターン終了時イベント検知イベント
+////
+
+////
+// コイントスイベント
+////
+
+////
+// 対戦結果通知イベント
+////

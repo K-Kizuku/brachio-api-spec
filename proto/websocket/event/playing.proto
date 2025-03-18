@@ -287,3 +287,10 @@ message ConfirmTargetEventToServer {
 message ConfirmTargetEventToActor {
   websocket.payload.playing.ConfirmTargetRequestPayload payload = 1;
 }
+
+////
+// 次のエネルギーの取得イベント
+////
+message NextEnergyEventToActor {
+  websocket.payload.playing.NextEnergyPayload payload = 1;
+}

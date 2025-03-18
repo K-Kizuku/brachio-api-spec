@@ -6,6 +6,12 @@ package websocket.event.gm;
 ////
 // デッキデータ交換イベント(c→sは必要だが、c同士は必要ないかも)
 ////
+message ExchangeDeckEventToServer {
+  // 交換するデッキのユーザーID
+  string userId = 1;
+  // 交換するデッキのデータ
+  repeated string deck = 2;
+}
 
 ////
 // ルーム作成イベント

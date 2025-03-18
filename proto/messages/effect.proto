@@ -1,0 +1,199 @@
+syntax = "proto3";
+
+package messages.effect;
+
+import "messages/common.proto";
+import "messages/card.proto";
+
+// エネルギートラッシュ
+message EnergyTrashEffect {
+  // どの場所から
+  int32 position = 1;
+  // トラッシュ後のエネルギー
+  repeated common.Element energy = 2;
+}
+
+// このカード使います宣言
+message UseCardEffect {
+  // カード情報
+  card.Card card = 1;
+}
+
+// 手札トラッシュ(持ち主)
+message TrashHandEffectSecret {
+  // 何枚
+  int32 count = 1;
+  // どのカードが（持ち主のみ）
+  card.Card card = 2;
+}
+
+// 手札トラッシュ
+message TrashHandEffect {
+  // 何枚
+  int32 count = 1;
+}
+
+// 山札トラッシュ
+message TrashDeckEffect {
+  // 何枚
+  int32 count = 1;
+  // 残り枚数
+  int32 remain = 2;
+}
+
+// ワザor特性を使用する
+message UseSkillOrAbilityEffect {
+  // 名前 e.g. たいあたり
+  string name = 1;
+}
+
+// 回復する
+message RecoverEffect {
+  // 誰から
+  int32 position = 1;
+  // length4の配列で値
+  repeated int32 amount = 2;
+}
+
+// ダメージを与える
+message DamageEffect {
+  // 誰から
+  int32 position = 1;
+  // length4の配列で値
+  repeated int32 amount = 2;
+}
+
+// 進化する
+message EvolutionEffect {
+  // どの場所のカードが
+  int32 position = 1;
+  // カード情報
+  card.Card card = 2;
+}
+
+// 点数取得
+message GetPointEffect {
+  // 合計何点取得したか
+  int32 point = 1;
+  // どのユーザーが
+  string userId = 2;
+}
+
+// 勝敗決定
+message DecideWinOrLoseEffect {
+  // どっちが
+  string userId = 1;
+}
+
+// 先攻後攻の決定
+message DecideFirstOrSecondEffect {
+  // どっちが
+  string userId = 1;
+}
+
+// バトル場とベンチの入れ替え
+message SwapBattleAndBenchEffect {
+  // どこと
+  int32 position = 1;
+}
+
+// ベンチからバトル場に出す（バトル場死亡時or手札戻り時等）
+message PutBattleFromBenchEffect {
+  // どこから
+  int32 position = 1;
+}
+
+// 手札に戻る
+message ReturnHandEffect {
+  // 誰が
+  int32 position = 1;
+}
+
+// 気絶する
+message FaintEffect {
+  // 誰が
+  int32 position = 1;
+}
+
+// 召喚する
+message SummonEffect {
+  // カード情報
+  card.Card card = 1;
+  // どこに
+  int32 position = 2;
+}
+
+// コイントス
+message CoinTossEffect {
+  // 結果配列
+  repeated bool result = 1;
+}
+
+// エネルギーつける
+message AttachEnergyEffect {
+  // どこに
+  int32 position = 1;
+  // どのエネルギー
+  repeated common.Element energies = 2;
+}
+
+// 降参
+message SurrenderEffect {
+  // どちらが
+  string userId = 1;
+}
+
+// シャッフル
+message ShuffleEffect {}
+
+// シークレットを持つエフェクト
+message EffectWithSecret {
+  oneof effect {
+    EnergyTrashEffect energy_trash = 1;
+    UseCardEffect use_card = 2;
+    TrashHandEffectSecret trash_hand_secret = 3;
+    TrashDeckEffect trash_deck = 4;
+    UseSkillOrAbilityEffect use_skill_or_ability = 5;
+    RecoverEffect recover = 6;
+    DamageEffect damage = 7;
+    EvolutionEffect evolution = 8;
+    GetPointEffect get_point = 9;
+    DecideWinOrLoseEffect decide_win_or_lose = 10;
+    DecideFirstOrSecondEffect decide_first_or_second = 11;
+    SwapBattleAndBenchEffect swap_battle_and_bench = 12;
+    PutBattleFromBenchEffect put_battle_from_bench = 13;
+    ReturnHandEffect return_hand = 14;
+    FaintEffect faint = 15;
+    SummonEffect summon = 16;
+    CoinTossEffect coin_toss = 17;
+    AttachEnergyEffect attach_energy = 18;
+    SurrenderEffect surrender = 19;
+    ShuffleEffect shuffle = 20;
+  }
+}
+
+// シークレットを持たないエフェクト
+message Effect {
+  oneof effect {
+    EnergyTrashEffect energy_trash = 1;
+    UseCardEffect use_card = 2;
+    TrashHandEffect trash_hand = 3;
+    TrashDeckEffect trash_deck = 4;
+    UseSkillOrAbilityEffect use_skill_or_ability = 5;
+    RecoverEffect recover = 6;
+    DamageEffect damage = 7;
+    EvolutionEffect evolution = 8;
+    GetPointEffect get_point = 9;
+    DecideWinOrLoseEffect decide_win_or_lose = 10;
+    DecideFirstOrSecondEffect decide_first_or_second = 11;
+    SwapBattleAndBenchEffect swap_battle_and_bench = 12;
+    PutBattleFromBenchEffect put_battle_from_bench = 13;
+    ReturnHandEffect return_hand = 14;
+    FaintEffect faint = 15;
+    SummonEffect summon = 16;
+    CoinTossEffect coin_toss = 17;
+    AttachEnergyEffect attach_energy = 18;
+    SurrenderEffect surrender = 19;
+    ShuffleEffect shuffle = 20;
+  }
+}

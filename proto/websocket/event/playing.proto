@@ -291,3 +291,14 @@ message ConfirmTargetEventToActor {
 message NextEnergyEventToActor {
   websocket.payload.playing.NextEnergyPayload payload = 1;
 }
+
+////
+// 描画する必要のあるイベント通知イベント
+////
+message DrawEffectEventToActor {
+  websocket.payload.playing.DrawEffectPayloadToActor payload = 1;
+}
+
+message DrawEffectEventToRecipient {
+  websocket.payload.playing.DrawEffectPayloadToRecipient payload = 1;
+}

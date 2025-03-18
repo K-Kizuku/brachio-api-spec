@@ -101,5 +101,10 @@ message EventEnvelope {
     websocket.event.gm.DecideOrderEventToActor decide_order_event_to_actor = 52;
     websocket.event.gm.DecideOrderEventToRecipient
         decide_order_event_to_recipient = 53;
+
+    websocket.event.playing.DrawEffectEventToActor draw_effect_event_to_actor =
+        54;
+    websocket.event.playing.DrawEffectEventToRecipient
+        draw_effect_event_to_recipient = 55;
   }
 }

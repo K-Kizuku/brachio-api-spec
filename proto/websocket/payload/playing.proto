@@ -4,6 +4,7 @@ package websocket.payload.playing;
 
 import "messages/card.proto";
 import "messages/ability.proto";
+import "messages/effect.proto";
 import "messages/common.proto";
 import "google/protobuf/empty.proto";
 
@@ -73,6 +74,8 @@ message AbilityPayload {
 message DrawCardPayload {
   // 山札から引くカードの枚数
   int32 count = 1;
+  // 山札の残り枚数
+  int32 remain = 2;
 }
 
 message DrawCardIndividualPayload {
@@ -80,6 +83,8 @@ message DrawCardIndividualPayload {
   int32 count = 1;
   // 山札から引くカード
   repeated messages.card.Card cards = 2;
+  // 山札の残り枚数
+  int32 remain = 3;
 }
 
 message ConfirmActionPayload { repeated Action actions = 1; }
@@ -161,4 +166,12 @@ message ConfirmTargetRequestPayload {
 message NextEnergyPayload {
   // 次のエネルギー
   messages.common.Element energy = 1;
+}
+
+message DrawEffectPayloadToRecipient {
+  repeated messages.effect.Effect effects = 1;
+}
+
+message DrawEffectPayloadToActor {
+  repeated messages.effect.EffectWithSecret effects = 1;
 }

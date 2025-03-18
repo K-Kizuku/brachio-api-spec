@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package messages.common;
+
+// カードタイプの enum 定義
+enum CardType {
+  CARD_TYPE_UNSPECIFIED = 0;
+  CARD_TYPE_MONSTER = 1;
+  CARD_TYPE_SUPPORTER = 2;
+  CARD_TYPE_GOODS = 3;
+}
+
+// 進化段階（MonsterCard用）の enum 定義
+enum SubType {
+  SUB_TYPE_UNSPECIFIED = 0;
+  SUB_TYPE_BASIC = 1;  // たね
+  SUB_TYPE_STAGE1 = 2; // 1進化
+  SUB_TYPE_STAGE2 = 3; // 2進化
+}
+
+// エネルギーの属性の enum 定義
+enum Element {
+  ELEMENT_UNSPECIFIED = 0;
+  ELEMENT_GRASS = 1;
+  ELEMENT_FIRE = 2;
+  ELEMENT_WATER = 3;
+  ELEMENT_LIGHTNING = 4;
+  ELEMENT_PSYCHIC = 5;
+  ELEMENT_FIGHTING = 6;
+  ELEMENT_DARKNESS = 7;
+  ELEMENT_METAL = 8;
+  ELEMENT_DRAGON = 9;
+  ELEMENT_NORMAL = 10;
+}

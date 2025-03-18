@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package messages.gacha;
+
+message Gacha {
+  // ガチャID
+  string id = 1;
+  // ガチャ名
+  string name = 2;
+  // ガチャ画像URL
+  string image_url = 3;
+}

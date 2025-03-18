@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package messages.pack;
+
+import "messages/card.proto";
+
+message Pack {
+  // 中身
+  repeated card.Card cards = 1;
+}

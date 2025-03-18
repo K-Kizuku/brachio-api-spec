@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package websocket.payload.playing;
+
+import "messages/card.proto";
+
+message AttackMonsterPayload {
+  // 攻撃者のモンスターID
+  int32 attackerId = 1;
+  // 攻撃対象のモンスターID
+  int32 targetId = 2;
+  // 技のID
+  int32 skillId = 3;
+}
+
+message SummonMonsterPayload {
+  // 召喚するモンスター
+  messages.card.Card card = 1;
+  // 召喚する場所
+  int32 position = 2;
+}
+
+message EvolutionMonsterPayload {
+  // 進化するモンスター
+  string cardId = 1;
+  // 進化する場所
+  int32 position = 2;
+}
+
+message TakeSupportPayload {
+  // サポートカード
+  string cardId = 1;
+  // サポートの対象のカードのID
+  optional string targetCardId = 2;
+}
+
+message TakeGoodsPayload {
+  // アイテムID
+  string cardId = 1;
+  // グッズ効果の対象のカード
+  optional string targetCardId = 2;
+}
+

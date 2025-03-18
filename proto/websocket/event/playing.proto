@@ -292,6 +292,10 @@ message NextEnergyEventToActor {
   websocket.payload.playing.NextEnergyPayload payload = 1;
 }
 
+message NextEnergyEventToRecipient {
+  websocket.payload.playing.NextEnergyPayload payload = 1;
+}
+
 ////
 // 描画する必要のあるイベント通知イベント
 ////

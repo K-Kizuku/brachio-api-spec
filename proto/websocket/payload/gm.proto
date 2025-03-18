@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package websocket.payload.gm;
 
-import "messages/user.proto";
-
 // ルーム作成イベント
 message CreateRoomEventPayload {
   // ルームの合言葉

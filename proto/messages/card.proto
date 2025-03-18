@@ -96,6 +96,8 @@ message MasterMonsterCard {
   repeated string evolves_to = 9;
   // サブタイプ
   common.SubType sub_type = 10;
+
+  bool isEx = 11;
 }
 
 // サポーターカード（マスターカードの一種）

@@ -15,7 +15,7 @@ message Skill {
   // ダメージ
   int32 damage = 3;
   // ダメージオプション（"x" または "+"）
-  common.DamageOption damage_option = 4;
+  optional common.DamageOption damage_option = 4;
   // コスト（Element の配列）
   repeated common.Element cost = 5;
 }

@@ -209,6 +209,9 @@ message ConfirmActionEventToActor {
 ////
 // 初期ラムポケ配置イベント(召喚イベントと同じ)
 ////
+message InitialSummonEventToServer {
+  websocket.payload.playing.SummonMonsterPayload payload = 1;
+}
 
 ////
 // 初期ラムポケ配置完了イベント

@@ -109,5 +109,6 @@ message EventEnvelope {
     websocket.event.playing.SelectBattlePositionEventToServer
         select_battle_position_event_to_server = 56;
     websocket.event.playing.NextEnergyEventToRecipient event_to_recipient = 57;
+    websocket.event.playing.InitialSummonEventToServer initial_summon_event_to_server = 58;
   }
 }
